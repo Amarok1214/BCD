@@ -2,25 +2,29 @@ from django.views import View
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import CustomLoginForm
+from firebase_admin import auth
+from django.contrib import messages
+from .firebase_utils import get_user_data, set_user_data
 
-# Create your views here.
-class CustomLoginView(View):
-    form_class = CustomLoginForm
-    template_name = 'registration/login.html'
+def login_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')  # In Firebase, password auth is best handled client-side
 
-    def get(self, request):
-        form = self.form_class()
-        return render(request, self.template_name, {'form': form})
+        user_data = get_user_data(email)
+        if user_data:
+            # Assume successful login and redirect to another page
+            messages.success(request, f'Welcome back, {user_data.get("name")}!')
+            return redirect('home')  # Change to the path of your home page
+        else:
+            messages.error(request, 'Invalid login credentials.')
 
-    def post(self, request):
-        form = self.form_class(data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')  # Redirect to a success page or home page
-            else:
-                form.add_error(None, 'Invalid username or password')
-        return render(request, self.template_name, {'form': form})
+    return render(request, 'account/login.html')
+
+def verify_token(id_token):
+    try:
+        decoded_token = auth.verify_id_token(id_token)
+        uid = decoded_token['uid']
+        return uid
+    except Exception as e:
+        return None
