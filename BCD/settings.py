@@ -16,11 +16,7 @@ from pathlib import Path
 import os
 
 # Path to Firebase credentials JSON file
-<<<<<<< HEAD
 FIREBASE_CREDENTIALS = 'bcddb-c8f53-firebase-adminsdk-x81t0-c8417bcb5e.json'
-=======
-FIREBASE_CREDENTIALS = 'BCD/bcddb-c8f53-firebase-adminsdk-x81t0-c8417bcb5e.json'
->>>>>>> e5273444d1aff40e45f53c9dd1c7123ec171e4fd
 
 # Initialize Firebase app
 cred = credentials.Certificate(FIREBASE_CREDENTIALS)
@@ -53,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'landing',
-    'payment'
+    'payment',
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -134,7 +131,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'landing/static'),  # Adjust this if your static files are in a different directory
+    os.path.join(BASE_DIR, 'landing/static'),
+      os.path.join(BASE_DIR, 'home/static')  # Adjust this if your static files are in a different directory
 ]
 
 # Default primary key field type
