@@ -1,5 +1,6 @@
+# account/forms.py
 from django import forms
 
-class loginForm(forms.Form):
-    username = forms.CharField(label="Your username please", max_length=100)
-    password = forms.PasswordInput(label = "Enter password")
+class CustomLoginForm(forms.Form):
+    username = forms.CharField(max_length=150)
+    password = forms.CharField(widget=forms.PasswordInput)

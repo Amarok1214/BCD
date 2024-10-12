@@ -19,7 +19,7 @@ def login_view(request):
         else:
             messages.error(request, 'Invalid login credentials.')
 
-    return render(request, 'account/login.html')
+    return render(request, 'account/templates/login.html')
 
 def verify_token(id_token):
     try:
