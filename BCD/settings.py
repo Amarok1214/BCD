@@ -10,8 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import firebase_admin
+from firebase_admin import credentials
 from pathlib import Path
 import os
+
+# Path to Firebase credentials JSON file
+FIREBASE_CREDENTIALS = 'BCD\bcddb-c8f53-firebase-adminsdk-x81t0-c8417bcb5e.json'
+
+# Initialize Firebase app
+cred = credentials.Certificate(FIREBASE_CREDENTIALS)
+firebase_admin.initialize_app(cred)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
