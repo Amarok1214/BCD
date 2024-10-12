@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .payment-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .payment-methods {
+            margin: 20px 0;
+        }
+        .payment-methods label {
+            margin-right: 15px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        .details {
+            margin: 15px 0;
+        }
+        .details input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .buttons button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .cancel {
+            background-color: #f44336;
+            color: white;
+        }
+        .proceed {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Payment</h1>
+        <p>Select Mode of Payment</p>
+        <div class="payment-methods">
+            <input type="radio" name="payment_method" value="gcash" id="gcash">
+            <label for="gcash"><i class="fab fa-cc-visa"></i> GCash</label>
+            <input type="radio" name="payment_method" value="paypal" id="paypal">
+            <label for="paypal"><i class="fab fa-paypal"></i> PayPal</label>
+            <input type="radio" name="payment_method" value="card" id="card">
+            <label for="card"><i class="fab fa-cc-mastercard"></i> Card</label>
+        </div>
+        <div class="details">
+            <input type="text" placeholder="Enter Account Number / Card Number">
+            <input type="text" placeholder="*If chosen method is Card">
+            <input type="text" placeholder="Expiry Date">
+            <input type="text" placeholder="CVC">
+        </div>
+        <div class="buttons">
+            <button class="cancel">Cancel</button>
+            <button class="proceed">Proceed</button>
+        </div>
+    </div>
+</body>
+</html>
