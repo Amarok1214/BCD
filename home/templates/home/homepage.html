@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCD Car Rental</title>
+    {% load static %}  <!-- Add this line to load the static tag library -->
+    <link rel="stylesheet" href="{% static 'home/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: #D1D6D9;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .header img {
+            height: 80px;
+            margin-right: 500px;
+            vertical-align: middle;
+        }
+        .header nav {
+            display: inline-block;
+            margin-left: 20px;
+        }
+        .header nav a {
+            color: black;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .hero-section {
+            background: url('/static/home/car-background.png') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .search-bar {
+            margin-top: 20px;
+        }
+        
+        .search-bar input, .search-bar button {
+            padding: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .search-bar input {
+            width: 200px;
+            border: none;
+            margin-right: 10px;
+        }
+        
+        .search-bar input[type="date"] {
+            width: 180px; /* Adjust the width for the date input */
+        }
+        
+        .search-bar button {
+            background-color: #464646;
+            color: white;
+            border-radius: 10px;
+            border-color: #b4b4b4;
+            width: 200px;
+            margin-top: 30px;
+            cursor: pointer;
+        }
+        .promo-section {
+            background-color: #f4f4f4;
+            background: url('/static/home/car-promo.png') no-repeat center center/cover;
+            max-width: 70%;
+            height: 300px;
+            padding: 15px 50px;
+            margin-top: 100px;
+            margin: 100px auto;
+            border-radius: 25px;
+            text-align: center;
+            text-shadow: 0 0 3px #b4b4b4, 0 0 5px #b4b4b4;
+        }
+        .promo-section .cta-button {
+            background-color: #464646;
+            color: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            text-decoration: none;
+        }
+        .info-section {
+            display: flex;
+            padding: 40px 20px;
+            gap: 20px;
+        }
+        .info-section div {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+        }
+        .info-section div img {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        footer a {
+            color: white;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="{% static 'home/logo.png' %}" alt="BCD Logo">
+        <nav>
+            <a href="#">Customer Feedback</a>
+            <a href="#">View Rentals</a>
+            <a href="#">Bookings</a>
+            <a href="#">Sign Up</a>
+            <a href="/account/login/">Log In</a>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <h1>BCD - Your Efficient Travel Solution</h1>
+        <p>Enter your location and date of rent</p>
+        <div class="search-bar">
+            
+            <input type="text" placeholder="Enter your location or zip code">
+    
+            <input type="date">
+            <br>
+            <button>Select Car</button>
+        </div>
+    </section>
+
+    <section class="promo-section">
+        <h1>BCD DRIVE MORE, SPEND LESS</h1>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2>Save 20% on All Cars!</h2>
+        <a href="#" class="cta-button">Book Now</a>
+    </section>
+
+    <section class="info-section">
+        <div>
+            <h3>Car Rental FAQs</h3>
+            <p>Find answers to common questions about renting with BCD.</p>
+            <a href="#">View Car Rental FAQs</a>
+        </div>
+        <div>
+            <h3>Our Commitment to Excellence</h3>
+            <p>Reliable and well-maintained vehicles for a stress-free experience.</p>
+        </div>
+        <div>
+            <h3>Rent a Car for Your Next Adventure</h3>
+            <p>Planning a trip? Rent the perfect car for your adventure.</p>
+            <a href="#">Explore Road Trips</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 BCD Car Rental. All rights reserved.</p>
+        <div>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+        </div>
+    </footer>
+</body>
+</html>

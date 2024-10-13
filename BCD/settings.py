@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'landing',
-    'payment'
+    'payment',
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -130,7 +131,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'landing/static'),  # Adjust this if your static files are in a different directory
+    os.path.join(BASE_DIR, 'landing/static'),
+      os.path.join(BASE_DIR, 'home/static')  # Adjust this if your static files are in a different directory
 ]
 
 # Default primary key field type
