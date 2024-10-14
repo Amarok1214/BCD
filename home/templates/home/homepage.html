@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BCD Car Rental</title>
     {% load static %}  <!-- Add this line to load the static tag library -->
-    <link rel="stylesheet" href="{% static 'home/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,22 +46,22 @@
         .search-bar {
             margin-top: 20px;
         }
-        
+
         .search-bar input, .search-bar button {
             padding: 15px;
             font-size: 1.2rem;
         }
-        
+
         .search-bar input {
             width: 200px;
             border: none;
             margin-right: 10px;
         }
-        
+
         .search-bar input[type="date"] {
             width: 180px; /* Adjust the width for the date input */
         }
-        
+
         .search-bar button {
             background-color: #464646;
             color: white;
@@ -90,6 +90,48 @@
             padding: 15px 25px;
             text-decoration: none;
         }
+        .rental-info-section {
+            background-color: #e0e7ef; /* Light gray background as per the example */
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 2000px; /* Limits the width of the section */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for a subtle effect */
+        }
+        
+        .rental-info-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Spreads the text and image evenly */
+        }
+        
+        .rental-info-text {
+            flex: 1.5; /* Allows more space for text */
+            padding-right: 20px; /* Adds space between text and image */
+        }
+        
+        .rental-info-text h2 {
+            font-size: 2rem;
+            color: #333; /* Darker color for heading */
+            margin-bottom: 20px;
+        }
+        
+        .rental-info-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333; /* Dark text for better readability */
+            margin-bottom: 15px;
+        }
+        
+        .rental-info-image {
+            flex: 1;
+        }
+        
+        .rental-info-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px; /* Optional: round the corners of the image */
+        }
         .info-section {
             display: flex;
             padding: 40px 20px;
@@ -99,6 +141,8 @@
             flex: 1;
             background-color: #f9f9f9;
             padding: 20px;
+            padding-left: 70px;
+            padding-right: 70px;
             text-align: center;
         }
         .info-section div img {
@@ -133,9 +177,7 @@
         <h1>BCD - Your Efficient Travel Solution</h1>
         <p>Enter your location and date of rent</p>
         <div class="search-bar">
-            
             <input type="text" placeholder="Enter your location or zip code">
-    
             <input type="date">
             <br>
             <button>Select Car</button>
@@ -153,19 +195,35 @@
         <a href="#" class="cta-button">Book Now</a>
     </section>
 
+    <section class="rental-info-section">
+        <div class="rental-info-container">
+            <div class="rental-info-text">
+                <h2>Renting a Car with BCD</h2>
+                <p>With years of experience in the industry, BCD Car Rental makes your car rental experience smooth and hassle-free, so you can focus on enjoying your journey. Reserve your vehicle online through our easy-to-use website or mobile app, with access to convenient locations in cities and airports across the country.</p>
+                <p>Whether you need a compact car for city driving, a spacious SUV for a family trip, or a luxury vehicle for a special occasion, BCD Car Rental has the perfect ride to suit your needs. Start your reservation online and pay only when you pick up the vehicle, with flexible options that allow you to modify or cancel without any extra charges.</p>
+                <p>New to car rentals? Check out our comprehensive car rental guide for tips and information to ensure a seamless experience from start to finish.</p>
+            </div>
+            <div class="rental-info-image">
+                <!-- Replace with the correct path to your image -->
+                <img src="{% static 'home/rental-car-image.png' %}" alt="Car Rental">
+            </div>
+        </div>
+    </section>
+    
     <section class="info-section">
         <div>
             <h3>Car Rental FAQs</h3>
-            <p>Find answers to common questions about renting with BCD.</p>
+            <p>Find answers to common questions about renting with BCD Car Rental, including policies, age requirements, and payment options.</p>
             <a href="#">View Car Rental FAQs</a>
         </div>
         <div>
             <h3>Our Commitment to Excellence</h3>
-            <p>Reliable and well-maintained vehicles for a stress-free experience.</p>
+            <p>At BCD Car Rental, we ensure every vehicle is clean, reliable, and well-maintained for a safe and stress-free experience.</p>
+            <a href="#">Learn More</a>
         </div>
         <div>
             <h3>Rent a Car for Your Next Adventure</h3>
-            <p>Planning a trip? Rent the perfect car for your adventure.</p>
+            <p>Planning a trip? Rent the perfect vehicle for your journey and explore tips for the best road trips and travel destinations.</p>
             <a href="#">Explore Road Trips</a>
         </div>
     </section>
@@ -173,9 +231,9 @@
     <footer>
         <p>&copy; 2024 BCD Car Rental. All rights reserved.</p>
         <div>
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-            <a href="#"><i class="fa fa-youtube"></i></a>
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
     </footer>
 </body>
