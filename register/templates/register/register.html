@@ -14,6 +14,7 @@
             background-size: cover;
             margin: 0;
             font-family: Arial, sans-serif;
+            
         }
         .register-container {
             padding: 40px;
@@ -24,6 +25,8 @@
             flex-direction: column;
             align-items: center;
             margin-left: 28%;
+            margin-bottom: 5%;
+            
         }
         .logo img {
             width: 150px;
@@ -39,7 +42,7 @@
             justify-content: space-between;
             width: 100%;
             margin-top: 20px;
-            
+
         }
         .form-group input {
             width: 48%;
@@ -47,6 +50,7 @@
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin: 15px;
         }
         .button-group {
             display: flex;
@@ -72,7 +76,7 @@
 <body>
     <div class="register-container">
         <div class="logo">
-            <img src="{% static 'account/images/logo-placeholder.png' %}" alt="BCD Car Rental Logo">
+            <img src="{% static 'account/images/2.png' %}" alt="BCD Car Rental Logo">
         </div>
         <h1>Register</h1>
         <form method="POST" action="{% url 'register' %}">
