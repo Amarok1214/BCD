@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BCD Car Rental</title>
-    {% load static %}  <!-- Add this line to load the static tag library -->
+    {% load static %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -168,7 +168,7 @@
             <a href="#">Customer Feedback</a>
             <a href="#">View Rentals</a>
             <a href="#">Bookings</a>
-            <a href="#">Sign Up</a>
+            <a href="/register/">Sign Up</a>
             <a href="/account/login/">Log In</a>
         </nav>
     </header>
@@ -204,7 +204,6 @@
                 <p>New to car rentals? Check out our comprehensive car rental guide for tips and information to ensure a seamless experience from start to finish.</p>
             </div>
             <div class="rental-info-image">
-                <!-- Replace with the correct path to your image -->
                 <img src="{% static 'home/rental-car-image.png' %}" alt="Car Rental">
             </div>
         </div>
