@@ -7,40 +7,47 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
     <!-- Load static files -->
-    {% load static %} 
+    {% load static %}
 
     <style>
         body {
             margin: 0;
-            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: url("{% static 'images/car2.jpg' %}") no-repeat center center fixed; /* Set your background image here */
-            background-size: cover; /* Ensure the background image covers the full area */
+            flex-direction: column;
+            min-height: 150vh; /* Ensure the height is larger than the viewport */
+            background: url("{% static 'images/car2.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
             color: white;
             text-align: center;
         }
+
+        .logo {
+            max-width: 250px; /* Set a reasonable width for the logo */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
         .container {
             background-color: rgba(22, 20, 20, 0.7); /* Semi-transparent background */
             padding: 20px;
             border-radius: 10px;
             max-width: 600px;
+            margin-bottom: 100px; /* Add space below the container for scrolling */
         }
-        img.logo {
-            max-width: 100%; /* Ensure the logo is responsive */
-            height: auto;
-            margin-bottom: 20px; /* Space between the logo and the text */
-        }
+
         h1 {
             margin: 20px 0;
             font-size: 2.5em;
         }
+
         p {
             font-size: 1.2em;
             margin-bottom: 20px;
         }
+
         .button {
             background-color: #2f3336;
             color: white;
@@ -50,14 +57,16 @@
             font-size: 1.2em;
             transition: background-color 0.3s;
         }
+
         .button:hover {
             background-color: #9c9d9f;
         }
     </style>
 </head>
 <body>
+    <img src="{% static 'images/logo1.png' %}" alt="BCD Car Rental Logo" class="logo"> <!-- Logo above the container -->
+    
     <div class="container">
-        <img src="{% static 'images/logo1.png' %}" alt="BCD Car Rental Logo" class="logo"> <!-- Logo above the text -->
         <h1>Experience the Freedom of the Open Road!</h1>
         <p>We're thrilled to have you here! Whether you're planning a weekend getaway, a business trip, or just need a reliable ride around town, BCD Car Rental has got you covered. With our wide selection of vehicles, seamless booking process, and customer-first approach, we ensure that your journey starts the right way.</p>
         <p>Ready to hit the road?</p>
