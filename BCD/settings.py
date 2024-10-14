@@ -16,7 +16,7 @@ from pathlib import Path
 import os
 
 # Path to Firebase credentials JSON file
-FIREBASE_CREDENTIALS = 'bcddb-c8f53-firebase-adminsdk-x81t0-c8417bcb5e.json'
+FIREBASE_CREDENTIALS = 'BCD/bcddb-c8f53-firebase-adminsdk-x81t0-c8417bcb5e.json'
 
 # Initialize Firebase app
 cred = credentials.Certificate(FIREBASE_CREDENTIALS)

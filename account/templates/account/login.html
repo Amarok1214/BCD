@@ -4,14 +4,78 @@
     {% load static %}
     <meta charset="UTF-8">
     <title>BCD Car Rental - Login</title>
-    <link rel="stylesheet" href="{% static 'account/css/login.css' %}">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url("{% static 'account/images/loginbg.png' %}") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+        }
+        .login-container {
+            position: relative; /* Parent positioned relative to contain absolutely positioned children */
+            width: 400px;
+            margin-right: 13%;
+            align-items: center;
+        }
+        .logo img {
+            width: 40%; /* Adjust the width as needed */
+            display: block; /* Makes the image a block element so it respects the auto margins */
+            margin: 20px auto; /* Centers the image horizontally */
+        }
+
+        .login-box {
+            position: absolute;
+            top: 50%; /* Center form vertically */
+            transform: translate(-50%, -50%);
+            padding: 40px;
+            border-radius: 10px;
+            width: 100%; /* Ensures the box takes the width of the container */
+            margin-right: 25%;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-box button {
+            width: 90%;
+            padding: 10px;
+            background-color: #4E5559; /* Adjust as needed */
+            color: white;   
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto; /* Center the button */
+            display: block; /* Ensures the button respects the auto margin for centering */
+        }
+        .login-box button:hover {
+            background-color: #1d1d1d; /* Darker shade for hover effect */
+        }
+        .register-link {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .social-icons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .social-icons img {
+            width: 40px; /* Adjust size of social media icons */
+            margin: 0 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
         <div class="login-box">
             <div class="logo">
                 <!-- Placeholder for Logo Image -->
-                <img src="{% static 'account/images/logo-placeholder.png' %}" alt="BCD Car Rental Logo">
+                <img src="{% static 'account/images/2.png' %}" alt="BCD Car Rental Logo">
             </div>
             <form method="POST" action="{% url 'login' %}">
                 {% csrf_token %}
@@ -20,13 +84,7 @@
                 <button type="submit">LOG IN</button>
             </form>
             <div class="register-link">
-                <p>Not Yet Registered? <a href="#">Click me</a></p>  <!-- Placeholder for register URL -->
-            </div>
-            <p>or log in with</p>
-            <div class="social-icons">
-                <!-- Placeholder for social media icons -->
-                <img src="{% static 'account/images/facebook-placeholder.png' %}" alt="Facebook">
-                <img src="{% static 'account/images/google-placeholder.png' %}" alt="Google">
+                <p> -----   Not Yet Registered? <a href="#">Click me </a> ----- </p>  <!-- Placeholder for register URL -->
             </div>
         </div>
     </div>

@@ -3,9 +3,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url("{% static 'account/images/background-placeholder.jpg' %}") no-repeat center center fixed;
+    background: url("{% static 'account/images/loginbg.png' %}") no-repeat center center fixed;
     background-size: cover;
+    margin: 0;
 }
+
 .login-container {
     background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for contrast */
     padding: 40px;
@@ -13,10 +15,12 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 400px;
 }
+
 .logo img {
     width: 100%; /* Adjust as needed */
     margin-bottom: 20px; /* Space between logo and form */
 }
+
 .login-box input {
     width: 100%;
     padding: 10px;
@@ -24,6 +28,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 .login-box button {
     width: 100%;
     padding: 10px;
@@ -33,17 +38,21 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .login-box button:hover {
     background-color: #0056b3; /* Darker shade for hover effect */
 }
+
 .register-link {
     text-align: center;
     margin: 10px 0;
 }
+
 .social-icons {
     text-align: center;
     margin-top: 20px;
 }
+
 .social-icons img {
     width: 40px; /* Adjust size of social media icons */
     margin: 0 10px;
