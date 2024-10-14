@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'account',
     'landing',
     'payment',
-    'home'
+    'home',
+    'register',
 ]
 
 MIDDLEWARE = [
