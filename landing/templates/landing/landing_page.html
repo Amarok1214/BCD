@@ -6,7 +6,6 @@
     <title>BCD Car Rental</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
-    <!-- Load static files -->
     {% load static %}
 
     <style>
@@ -17,7 +16,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            min-height: 150vh; /* Ensure the height is larger than the viewport */
+            min-height: 150vh; 
             background: url("{% static 'images/car2.jpg' %}") no-repeat center center fixed;
             background-size: cover;
             color: white;
@@ -25,17 +24,17 @@
         }
 
         .logo {
-            max-width: 250px; /* Set a reasonable width for the logo */
+            max-width: 250px; 
             height: auto;
             margin-bottom: 20px;
         }
 
         .container {
-            background-color: rgba(22, 20, 20, 0.7); /* Semi-transparent background */
+            background-color: rgba(22, 20, 20, 0.7); 
             padding: 20px;
             border-radius: 10px;
             max-width: 600px;
-            margin-bottom: 100px; /* Add space below the container for scrolling */
+            margin-bottom: 100px;
         }
 
         h1 {
@@ -64,7 +63,7 @@
     </style>
 </head>
 <body>
-    <img src="{% static 'images/logo1.png' %}" alt="BCD Car Rental Logo" class="logo"> <!-- Logo above the container -->
+    <img src="{% static 'images/logo1.png' %}" alt="BCD Car Rental Logo" class="logo"> 
     
     <div class="container">
         <h1>Experience the Freedom of the Open Road!</h1>
