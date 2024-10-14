@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation - BCD Car Rental</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: #D1D6D9;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .header img {
+            height: 80px;
+            margin-right: 500px;
+            vertical-align: middle;
+        }
+        .header nav {
+            display: inline-block;
+            margin-left: 20px;
+        }
+        .header nav a {
+            color: black;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .reservation-section {
+            padding: 40px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .reservation-section h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .reservation-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .reservation-section input, .reservation-section select {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .submit-button {
+            background-color: #464646;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        footer a {
+            color: white;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="{% static 'home/logo.png' %}" alt="BCD Logo">
+        <nav>
+            <a href="#">Customer Feedback</a>
+            <a href="#">View Rentals</a>
+            <a href="#">Bookings</a>
+            <a href="#">Sign Up</a>
+            <a href="/account/login/">Log In</a>
+        </nav>
+    </header>
+
+    <section class="reservation-section">
+        <h1>Reserve Your Car</h1>
+        <form method="POST" action="{% url 'confirm_reservation' car.id %}">
+            {% csrf_token %}
+            <input type="text" name="full_name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <select name="pickup_location" required>
+                <option value="" disabled selected>Pickup Location</option>
+                <option value="location1">Location 1</option>
+                <option value="location2">Location 2</option>
+                <option value="location3">Location 3</option>
+            </select>
+            <input type="date" name="pickup_date" required>
+            <input type="date" name="return_date" required>
+            <button type="submit" class="submit-button">Confirm Reservation</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 BCD Car Rental. All rights reserved.</p>
+        <div>
+            <a href="your-facebook-link"><i class="fa fa-facebook"></i></a>
+            <a href="your-instagram-link"><i class="fa fa-instagram"></i></a>
+            <a href="your-youtube-link"><i class="fa fa-youtube"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
