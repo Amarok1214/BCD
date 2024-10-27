@@ -24,9 +24,6 @@
         a:hover {
             color: #0056b3;
         }
-        {% comment %} h1, h2 {
-            color: #D1D6D9;
-        } {% endcomment %}
 
         /* Header Styles */
         .header {
@@ -201,8 +198,8 @@
         <img src="{% static 'home/logo.png' %}" alt="BCD Logo">
         <nav>
             <a href="#">Customer Feedback</a>
-            <a href="#">View Rentals</a>
-            <a href="/booking/">Bookings</a>
+            <a href="/inventory/">View Rentals</a>
+            <a href="/booking/">Rent Now</a>
             <a href="/register/">Sign Up</a>
             <a href="/account/login/">Log In</a>
         </nav>
@@ -220,7 +217,9 @@
                 <option value="lapulapu">Lapu-Lapu</option>
             </select>
             <input type="date">
+            <a href="/inventory/">
             <button>Select Car</button>
+            </a>
         </div>
     </section>
 

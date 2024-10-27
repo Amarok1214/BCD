@@ -12,13 +12,11 @@ class Branch(models.Model):
 
 
 class Car(models.Model):
-    # Basic Car Information
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
     year = models.IntegerField()
     license_plate = models.CharField(max_length=20, unique=True)
 
-    # Car Specifications
     BODY_TYPES = [
         ('Sedan', 'Sedan'),
         ('SUV', 'SUV'),
