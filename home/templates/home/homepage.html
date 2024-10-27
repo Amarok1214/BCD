@@ -7,32 +7,53 @@
     {% load static %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Global Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-color: #f9f9f9;
+            color: #333;
         }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        {% comment %} h1, h2 {
+            color: #D1D6D9;
+        } {% endcomment %}
+
+        /* Header Styles */
         .header {
             background-color: #D1D6D9;
             color: white;
-            padding: 10px;
-            text-align: center;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .header img {
-            height: 80px;
-            margin-right: 500px;
-            vertical-align: middle;
+            height: 60px;
         }
         .header nav {
-            display: inline-block;
-            margin-left: 20px;
+            display: flex;
+            gap: 20px;
         }
         .header nav a {
             color: black;
-            margin: 0 15px;
-            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
         }
+        .header nav a:hover {
+            color: #3498db;
+        }
+
+        /* Hero Section */
         .hero-section {
             background: url('/static/home/car-background.png') no-repeat center center/cover;
             color: white;
@@ -40,128 +61,142 @@
             padding: 100px 20px;
         }
         .hero-section h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .hero-section p {
+            font-size: 1.3rem;
+            margin-top: 50px;
+            margin-bottom: 30px;
         }
         .search-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
             margin-top: 20px;
         }
-
-        .search-bar input, .search-bar button {
+        .search-bar select, .search-bar input {
             padding: 15px;
-            font-size: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
         }
-
-        .search-bar input {
-            width: 200px;
-            border: none;
-            margin-right: 10px;
-        }
-
-        .search-bar input[type="date"] {
-            width: 180px; /* Adjust the width for the date input */
-        }
-
         .search-bar button {
-            background-color: #464646;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: solid;
+            background-color: #313530;
             color: white;
+            border-color: white;
             border-radius: 10px;
-            border-color: #b4b4b4;
-            width: 200px;
-            margin-top: 30px;
+            border-width: 1px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+        .search-bar button:hover {
+            background-color: #3498db;
+        }
+
+        /* Promo Section */
         .promo-section {
-            background-color: #f4f4f4;
             background: url('/static/home/car-promo.png') no-repeat center center/cover;
-            max-width: 70%;
-            height: 300px;
-            padding: 15px 50px;
-            margin-top: 100px;
-            margin: 100px auto;
-            border-radius: 25px;
-            text-align: center;
-            text-shadow: 0 0 3px #b4b4b4, 0 0 5px #b4b4b4;
-        }
-        .promo-section .cta-button {
-            background-color: #464646;
             color: white;
-            border-radius: 10px;
-            padding: 15px 25px;
-            text-decoration: none;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 15px;
+            max-width: 900px;
+            margin: 60px auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
+        .promo-section h1, .promo-section h2 {
+            margin: 0 0 20px 0;
+            text-shadow: 0 0 5px #d35400;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #e67e22;
+            color: white;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #d35400;
+        }
+
+        /* Rental Info Section */
         .rental-info-section {
-            background-color: #e0e7ef; /* Light gray background as per the example */
-            padding: 40px;
-            margin: 20px auto;
-            max-width: 2000px; /* Limits the width of the section */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for a subtle effect */
-        }
-        
-        .rental-info-container {
+            background-color: #ecf0f1;
+            padding: 50px 30px;
+            margin: 60px auto;
+            max-width: 1100px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Spreads the text and image evenly */
+            gap: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
-        
         .rental-info-text {
-            flex: 1.5; /* Allows more space for text */
-            padding-right: 20px; /* Adds space between text and image */
+            flex: 2;
         }
-        
-        .rental-info-text h2 {
-            font-size: 2rem;
-            color: #333; /* Darker color for heading */
-            margin-bottom: 20px;
-        }
-        
-        .rental-info-text p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #333; /* Dark text for better readability */
-            margin-bottom: 15px;
-        }
-        
         .rental-info-image {
             flex: 1;
         }
-        
         .rental-info-image img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
-            border-radius: 5px; /* Optional: round the corners of the image */
+            border-radius: 10px;
         }
+
+        /* Info Section */
         .info-section {
             display: flex;
-            padding: 40px 20px;
-            gap: 20px;
+            justify-content: space-around;
+            padding: 60px 20px;
+            gap: 40px;
         }
         .info-section div {
             flex: 1;
-            background-color: #f9f9f9;
-            padding: 20px;
-            padding-left: 70px;
-            padding-right: 70px;
-            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
         }
-        .info-section div img {
-            max-width: 100px;
-            margin-bottom: 10px;
+        .info-section div:hover {
+            transform: translateY(-10px);
         }
+        .info-section div h3 {
+            margin-bottom: 20px;
+        }
+        .info-section div p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        /* Footer */
         footer {
-            background-color: #333;
+            background-color: #313530;
             color: white;
             text-align: center;
             padding: 20px;
         }
         footer a {
-            color: white;
+            color: #ecf0f1;
             margin: 0 10px;
+            font-size: 1.2rem;
+        }
+        footer a:hover {
+            color: #3498db;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <img src="{% static 'home/logo.png' %}" alt="BCD Logo">
         <nav>
@@ -173,42 +208,42 @@
         </nav>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero-section">
-        <h1>BCD - Your Efficient Travel Solution</h1>
-        <p>Enter your location and date of rent</p>
+        <h1>BCD <br> Drive with Ease, Explore with Joy</h1>
+        <p>Choose a Branch Near You and The Date of Rent</p>
         <div class="search-bar">
-            <input type="text" placeholder="Enter your location or zip code">
+            <select name="branch" id="branch">
+                <option value="cebuMain">Cebu</option>
+                <option value="talisay">Talisay</option>
+                <option value="mandaue">Mandaue</option>
+                <option value="lapulapu">Lapu-Lapu</option>
+            </select>
             <input type="date">
-            <br>
             <button>Select Car</button>
         </div>
     </section>
 
+    <!-- Promo Section -->
     <section class="promo-section">
         <h1>BCD DRIVE MORE, SPEND LESS</h1>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <h2>Save 20% on All Cars!</h2>
         <a href="#" class="cta-button">Book Now</a>
     </section>
 
+    <!-- Rental Info Section -->
     <section class="rental-info-section">
-        <div class="rental-info-container">
-            <div class="rental-info-text">
-                <h2>Renting a Car with BCD</h2>
-                <p>With years of experience in the industry, BCD Car Rental makes your car rental experience smooth and hassle-free, so you can focus on enjoying your journey. Reserve your vehicle online through our easy-to-use website or mobile app, with access to convenient locations in cities and airports across the country.</p>
-                <p>Whether you need a compact car for city driving, a spacious SUV for a family trip, or a luxury vehicle for a special occasion, BCD Car Rental has the perfect ride to suit your needs. Start your reservation online and pay only when you pick up the vehicle, with flexible options that allow you to modify or cancel without any extra charges.</p>
-                <p>New to car rentals? Check out our comprehensive car rental guide for tips and information to ensure a seamless experience from start to finish.</p>
-            </div>
-            <div class="rental-info-image">
-                <img src="{% static 'home/rental-car-image.png' %}" alt="Car Rental">
-            </div>
+        <div class="rental-info-text">
+            <h2>Renting a Car with BCD</h2>
+            <p>With years of experience in the industry, BCD Car Rental makes your car rental experience smooth and hassle-free, so you can focus on enjoying your journey. Reserve your vehicle online through our easy-to-use website or mobile app, with access to convenient locations in cities and airports across the country.</p>
+            <p>Whether you need a compact car for city driving, a spacious SUV for a family trip, or a luxury vehicle for a special occasion, BCD Car Rental has the perfect ride to suit your needs. Start your reservation online and pay only when you pick up the vehicle, with flexible options that allow you to modify or cancel without any extra charges.</p>
+        </div>
+        <div class="rental-info-image">
+            <img src="{% static 'home/rental-car-image.png' %}" alt="Car Rental">
         </div>
     </section>
     
+    <!-- Info Section -->
     <section class="info-section">
         <div>
             <h3>Car Rental FAQs</h3>
@@ -227,6 +262,7 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2024 BCD Car Rental. All rights reserved.</p>
         <div>
