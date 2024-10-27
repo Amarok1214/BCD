@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,131 +8,308 @@
     {% load static %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Global Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-color: #f9f9f9;
+            color: #333;
         }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        /* Header Styles */
         .header {
             background-color: #D1D6D9;
             color: white;
-            padding: 10px;
-            text-align: center;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
         .header img {
-            height: 80px;
-            margin-right: 500px;
-            vertical-align: middle;
+            height: 60px;
         }
+
         .header nav {
-            display: inline-block;
-            margin-left: 20px;
+            display: flex;
+            gap: 20px;
         }
+
         .header nav a {
             color: black;
-            margin: 0 15px;
-            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
         }
+
+        .header nav a:hover {
+            color: #3498db;
+        }
+
+        /* Hero Section with Booking Form */
         .hero-section {
-            background: url('/static/home/car-background.png') no-repeat center center/cover;
+            position: relative;
+            background: url('/static/booking/road-background.png') no-repeat center center/cover;
             color: white;
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
+            overflow: hidden;
         }
-        .hero-section h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
         }
-        .promo-section {
-            background-color: #f4f4f4;
-            background: url('/static/home/car-promo.png') no-repeat center center/cover;
-            max-width: 70%;
-            height: 300px;
-            padding: 15px 50px;
-            margin: 100px auto;
-            border-radius: 25px;
-            text-align: center;
-            text-shadow: 0 0 3px #b4b4b4, 0 0 5px #b4b4b4;
+
+        .hero-section h1,
+        p,
+        .booking-form {
+            position: relative;
+            z-index: 2;
         }
-        .promo-section .cta-button {
-            background-color: #464646;
-            color: white;
-            border-radius: 10px;
-            padding: 15px 25px;
-            text-decoration: none;
-        }
-        .cars-section {
+
+        /* Booking Form Styles */
+        .booking-form {
+            background-color: #D1D6D9;
             padding: 40px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .car-card {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin: 15px;
             border-radius: 10px;
+            display: inline-block;
+            margin-top: 30px;
             text-align: center;
-            background-color: #f9f9f9;
-            flex: 0 0 30%; /* Responsive card width */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
         }
-        .car-card img {
-            max-width: 100%;
-            height: auto;
+
+        .booking-form select,
+        .booking-form input {
+            width: 400px;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        .booking-form button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: solid;
+            background-color: #313530;
+            color: white;
+            border-color: white;
             border-radius: 10px;
+            border-width: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
+        .booking-form button:hover {
+            background-color: #3498db;
+        }
+
+        /* Error Message Styles */
+        .error-message {
+            color: red;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        /* Additional Information Section */
+        .additional-info {
+            background-color: #ecf0f1;
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .additional-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .info-columns {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .info-column {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            max-width: 400px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-column h3 {
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .info-column p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .info-column:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Footer Styles */
         footer {
-            background-color: #333;
+            background-color: #313530;
             color: white;
             text-align: center;
             padding: 20px;
         }
+
         footer a {
-            color: white;
+            color: #ecf0f1;
             margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        footer a:hover {
+            color: #3498db;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .booking-form select,
+            .booking-form input {
+                width: 100%;
+            }
+
+            .info-columns {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
+
 <body>
+    <!-- Header -->
     <header class="header">
         <img src="{% static 'home/logo.png' %}" alt="BCD Logo">
         <nav>
             <a href="#">Customer Feedback</a>
             <a href="#">View Rentals</a>
-            <a href="#">Bookings</a>
-            <a href="#">Sign Up</a>
+            <a href="/booking/">Rent Now</a>
+            <a href="/register/">Sign Up</a>
             <a href="/account/login/">Log In</a>
         </nav>
     </header>
 
+    <!-- Hero Section with Booking Form -->
     <section class="hero-section">
-        <h1>Choose Your Car for Booking</h1>
-        <p>Find the perfect car for your journey from our wide range of vehicles.</p>
+        <h1>Book Your Next Adventure</h1>
+        <p>Choose when to pick up and return your rental</p>
+        <div class="booking-form">
+            <form id="bookingForm">
+                <select name="pickup_branch" id="pickup_branch">
+                    <option value="">Select Pick-up Branch</option>
+                    <option value="cebuMain">Cebu</option>
+                    <option value="talisay">Talisay</option>
+                    <option value="mandaue">Mandaue</option>
+                    <option value="lapulapu">Lapu-Lapu</option>
+                </select>
+                <input type="date" id="pickup_date">
+                <br>
+                <select name="return_branch" id="return_branch">
+                    <option value="">Select Return Branch</option>
+                    <option value="cebuMain">Cebu</option>
+                    <option value="talisay">Talisay</option>
+                    <option value="mandaue">Mandaue</option>
+                    <option value="lapulapu">Lapu-Lapu</option>
+                </select>
+                <input type="date" id="return_date">
+                <br>
+                <div class="error-message" id="error-message"></div>
+                <button type="submit">Select Car</button>
+            </form>
+        </div>
     </section>
 
-    <section class="cars-section">
-        <div class="container">
-            {% for car in cars %}
-            <div class="car-card">
-                <img src="{{ car.image.url }}" alt="{{ car.name }}">
-                <h3>{{ car.name }}</h3>
-                <p>{{ car.car_type }}</p>
-                <p>Price: ${{ car.price_per_day }} / day</p>
-                <a href="{% url 'car_details' car.id %}" class="cta-button">View Details</a>
+    <!-- Additional Information Section -->
+    <section class="additional-info">
+        <h2>Additional Information</h2>
+        <div class="info-columns">
+            <div class="info-column">
+                <h3>Reservations & BCD Assistance</h3>
+                <p>For any questions or assistance, feel free to call us at: <br><strong>09123456789</strong></p>
             </div>
-            {% endfor %}
+            <div class="info-column">
+                <h3>Car Rental Guide</h3>
+                <p>New to car rentals? Check out our guide for tips and tricks to make the most of your rental experience.</p>
+                <a href="#">View our guide</a>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 BCD Car Rental. All rights reserved.</p>
         <div>
-            <a href="your-facebook-link"><i class="fa fa-facebook"></i></a>
-            <a href="your-instagram-link"><i class="fa fa-instagram"></i></a>
-            <a href="your-youtube-link"><i class="fa fa-youtube"></i></a>
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
+        <p>&copy; 2024 BCD Car Rental. All rights reserved.</p>
     </footer>
+
+    <script>
+        // JavaScript form validation
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            const pickupBranch = document.getElementById('pickup_branch').value;
+            const returnBranch = document.getElementById('return_branch').value;
+            const pickupDate = new Date(document.getElementById('pickup_date').value);
+            const returnDate = new Date(document.getElementById('return_date').value);
+            const errorMessage = document.getElementById('error-message');
+
+            // Clear any previous error messages
+            errorMessage.textContent = '';
+
+            // Validate branch selection
+            if (!pickupBranch || !returnBranch) {
+                errorMessage.textContent = 'Please select both pick-up and return branches.';
+                event.preventDefault();
+                return;
+            }
+
+            // Validate date selection
+            if (pickupDate && returnDate && returnDate < pickupDate) {
+                errorMessage.textContent = 'Return date cannot be before pick-up date.';
+                event.preventDefault();
+                return;
+            }
+        });
+    </script>
 </body>
+
 </html>
