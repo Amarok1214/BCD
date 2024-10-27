@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'home',
     'register',
     'booking'
+    'cars',
 ]
 
 MIDDLEWARE = [
