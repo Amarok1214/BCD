@@ -29,4 +29,7 @@ urlpatterns = [
     path('register/', include('register.urls')),
     path('booking/', include('booking.urls')),
     path('inventory/', include('inventory.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.CAR_IMAGES_URL, document_root=settings.CAR_IMAGES_ROOT)

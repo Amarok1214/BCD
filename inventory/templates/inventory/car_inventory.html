@@ -143,10 +143,14 @@
             {% for car in cars %}
             <div class="car-card">
                 <a href="{% url 'car_details' car.id %}">
-                    <img src="{{ car.image.url }}" alt="{{ car.model }}">
+                    {% if car.image %}
+                        <img src="{{ car.image.url }}" alt="{{ car.brand }} {{ car.model }}">
+                    {% else %}
+                        <img src="{{ settings.CAR_IMAGES_URL }}{{ car.default_image }}" alt="{{ car.brand }} {{ car.model }}">
+                    {% endif %}
                     <div class="car-card-content">
                         <h3>{{ car.brand }} {{ car.model }}</h3>
-                        <p>{{ car.year }} - {{ car.type }}</p>
+                        <p>{{ car.year }} - {{ car.body_type }}</p>
                         <a href="{% url 'car_details' car.id %}">View Details</a>
                     </div>
                 </a>
