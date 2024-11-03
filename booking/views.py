@@ -11,7 +11,9 @@ def booking_home(request):
 
 # Detailed view of a car
 def car_details(request, car_id):
+    print(f"Fetching car with ID: {car_id}")
     car = get_object_or_404(Car, id=car_id)
+    print(f"Car found: {car}")
     return render(request, 'booking/car_details.html', {'car': car})
 
 # Make a reservation for a selected car
