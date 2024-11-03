@@ -84,22 +84,22 @@
             <img src="{% static 'account/images/2.png' %}" alt="BCD Car Rental Logo">
         </div>
         <h1>Register</h1>
-        <form method="POST" action="{% url 'register' %}">
+        <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             <div class="form-group">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="text" name="contact_number" placeholder="Contact Number" required>
+                <input type="text" name="username" placeholder="Username" >
+                <input type="text" name="contact_number" placeholder="Contact Number" >
             </div>
             <div class="form-group">
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="email" name="email_address1" placeholder="Email Address" required>
+                <input type="password" name="password" placeholder="Password" >
+                <input type="email" name="email_address1" placeholder="Email Address" >
             </div>
             <div class="form-group">
-                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-                <input type="email" name="email_address2" placeholder="Email Address" required>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" >
+                <input type="email" name="email_address2" placeholder="Email Address" >
             </div>
             <div class="button-group">
-                <button><a href="account/login.html" class="button">Cancel</a></button>
+                <button><a href="{% url 'login' %}" class="button">Cancel</a></button>
                 <button type="submit">Register</button>
             </div>
         </form>
