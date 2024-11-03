@@ -16,6 +16,7 @@ class Car(models.Model):
     model = models.CharField(max_length=50)
     year = models.IntegerField()
     license_plate = models.CharField(max_length=20, unique=True)
+    image = models.ImageField(upload_to='car_images/', blank=True, null=True)
 
     BODY_TYPES = [
         ('Sedan', 'Sedan'),
@@ -70,7 +71,7 @@ class Car(models.Model):
     last_service_date = models.DateField()
     
     # Image of the Car
-    image = models.ImageField(upload_to='car_images/', blank=True, null=True)
+    
 
     def __str__(self):
         return f"{self.make} {self.model} ({self.year}) - {self.license_plate}"
