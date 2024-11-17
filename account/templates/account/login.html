@@ -13,80 +13,82 @@
             background: url("{% static 'account/images/loginbg.png' %}") no-repeat center center fixed;
             background-size: cover;
             margin: 0;
+            font-family: Arial, sans-serif;
         }
-        .login-container {
-            position: relative; /* Parent positioned relative to contain absolutely positioned children */
-            width: 400px;
-            margin-right: 13%;
-            align-items: center;
-        }
+
         .logo img {
-            width: 40%; /* Adjust the width as needed */
-            display: block; /* Makes the image a block element so it respects the auto margins */
-            margin: 20px auto; /* Centers the image horizontally */
+            width: 150px;
+            margin-bottom: 20px;
+            margin-left: 130px; /* Original margin retained */
+        }
+
+        .login-container {
+            position: relative;
+            width: 400px;
+            margin-right: 500px; /* Original margin retained */
         }
 
         .login-box {
-            position: absolute;
-            top: 50%; /* Center form vertically */
-            transform: translate(-50%, -50%);
             padding: 40px;
             border-radius: 10px;
-            width: 100%; /* Ensures the box takes the width of the container */
-            margin-right: 25%;
+            background: rgba(255, 255, 255, 0); /* Original styling retained */
         }
+
         .login-box input {
-            width: 100%;
+            width: 80%;
             padding: 15px;
             margin: 15px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #ccccccac;
             border-radius: 5px;
+            margin-left: 15px; /* Original margin retained */
         }
+
         .login-box button {
-            width: 90%;
+            width: 65%;
             padding: 10px;
-            background-color: #4E5559; /* Adjust as needed */
-            color: white;   
+            background-color: #4E5559;
+            color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 20px auto; /* Center the button */
-            display: block; /* Ensures the button respects the auto margin for centering */
+            margin-left: 60px; /* Original margin retained */
+            font-size: 16px;
         }
+
         .login-box button:hover {
-            background-color: #1d1d1d; /* Darker shade for hover effect */
+            background-color: #333333;
         }
+
         .register-link {
-            text-align: center;
-            margin: 10px 0;
-        }
-        .social-icons {
-            text-align: center;
             margin-top: 20px;
+            margin-left: 70px; /* Original margin retained */
+            font-size: 14px;
         }
-        .social-icons img {
-            width: 40px; /* Adjust size of social media icons */
-            margin: 0 10px;
+
+        .register-link a {
+            color: #4E5559;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <div class="logo">
-                <!-- Placeholder for Logo Image -->
-                <img src="{% static 'account/images/2.png' %}" alt="BCD Car Rental Logo">
-            </div>
-            <form method="POST" action="/inventory/">
-                {% csrf_token %}
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">LOG IN</button>
-            </form>
-            <div class="register-link">
-                <p>Not Yet Registered? <a href="{% url 'register' %}">Click me</a></p>
+
+    <div class="register-container">
+        <div class="logo">
+            <img src="{% static 'account/images/2.png' %}" alt="BCD Car Rental Logo">
+        </div>
+
+        <div class="login-container">
+            <div class="login-box">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Log In</button>
+                </form>
+                <p class="register-link">Not registered? <a href="/account/register/">Sign up here</a></p>
             </div>
         </div>
     </div>
+
 </body>
 </html>
