@@ -33,21 +33,21 @@
             margin: 0 15px;
             text-decoration: none;
         }
-        .reservation-section {
+        .confirm-section {
             padding: 40px;
             max-width: 600px;
             margin: auto;
         }
-        .reservation-section h1 {
+        .confirm-section h1 {
             text-align: center;
             margin-bottom: 20px;
         }
-        .reservation-section form {
+        .confirm-section form {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-        .reservation-section input, .reservation-section select {
+        .confirm-section input, .confirm-section select {
             padding: 10px;
             font-size: 1rem;
             border-radius: 5px;
@@ -88,40 +88,16 @@
         </nav>
     </header>
 
-    <section class="reservation-section">
-        <h1>Confirm Your Reservation</h1>
-    <p>You are booking a {{ car_make }} {{ car_model }} for ${{ car_price }} per day.</p>
-    <p><strong>Total Rental Days:</strong> {{ total_days }}</p>
-    <p><strong>Total Price:</strong> ${{ total_price }}</p>
-        <form method="POST" action="{% url 'booking:confirm_reservation_page' %}">
-            {% csrf_token %}
-            <input type="hidden" name="car_id" value="{{ car_id }}">
-            <input type="hidden" name="car_make" value="{{ car_make }}">
-            <input type="hidden" name="car_model" value="{{ car_model }}">
-            <input type="hidden" name="car_price" value="{{ car_price }}">
-        
-            <label for="full_name">Full Name:</label>
-            <input type="text" id="full_name" name="full_name" value="{{ full_name }}" readonly>
-        
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{ email }}" readonly>
-        
-            <label for="pickup_date">Pickup Date:</label>
-            <input type="date" id="pickup_date" name="pickup_date" value="{{ pickup_date }}" readonly>
-        
-            <label for="return_date">Return Date:</label>
-            <input type="date" id="return_date" name="return_date" value="{{ return_date }}" readonly>
-        
-            <button type="submit" class="submit-button">Confirm Reservation</button>
-        </form>
+    <section class="confirmation-section">
+        <h1>Reservation confirmed for {{ full_name }}! We will email you at {{ email }}.</h1>
     </section>
 
     <footer>
         <p>&copy; 2024 BCD Car Rental. All rights reserved.</p>
         <div>
-            <a href="your-facebook-link"><i class="fab fa-facebook"></i></a>
-            <a href="your-instagram-link"><i class="fab fa-instagram"></i></a>
-            <a href="your-youtube-link"><i class="fab fa-youtube"></i></a>
+            <a href="your-facebook-link"><i class="fa fa-facebook"></i></a>
+            <a href="your-instagram-link"><i class="fa fa-instagram"></i></a>
+            <a href="your-youtube-link"><i class="fa fa-youtube"></i></a>
         </div>
     </footer>
 </body>

@@ -3,7 +3,7 @@ from .models import Car
 
 def car_inventory(request):
     # Fetch all cars from the database
-    cars = Car.objects.all()
+    cars = Car.objects.filter(availability="Available")
     context = {'cars': cars}
     return render(request, 'inventory/car_inventory.html', context)
 

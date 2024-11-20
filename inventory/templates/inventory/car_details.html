@@ -164,7 +164,7 @@
 
         <!-- Car Details Content -->
         <div class="car-details-content">
-            <h1>{{ car.make }} {{ car.model }} ({{ car.year }}) <a href="#" class="booking-button">Book Now</a></h1> 
+            <h1>{{ car.make }} {{ car.model }} ({{ car.year }}) <a href="{% url 'booking:booking_home' %}?car_id={{ car.id }}&car_make={{ car.make }}&car_model={{ car.model }}&car_price={{ car.rental_price_per_day }}" class="booking-button">Book Now</a></h1> 
             <div class="car-specs">
                 <div class="car-spec"><strong>Type:</strong> {{ car.body_type }}</div>
                 <div class="car-spec"><strong>Price per Day:</strong> ${{ car.rental_price_per_day }}</div>
