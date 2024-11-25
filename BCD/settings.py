@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'landing',
     'payment',
     'home',
-    'register',
     'booking',
     'inventory'
 ]

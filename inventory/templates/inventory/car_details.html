@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Inventory - BCD Car Rental</title>
+    <title>Car Details - BCD Car Rental</title>
     {% load static %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -36,82 +36,81 @@
         .header img {
             height: 60px;
         }
-        .header nav {
-            display: flex;
-            gap: 20px;
-        }
         .header nav a {
             color: black;
             font-size: 1rem;
+            margin-left: 20px;
             transition: color 0.3s;
         }
         .header nav a:hover {
             color: #3498db;
         }
 
-        /* Inventory Section */
-        .inventory-section {
-            padding: 60px 20px;
+        /* Car Details Section */
+        .car-details-section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 50px 20px;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: auto;
+            gap: 40px;
         }
-        .inventory-section h1 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #333;
+        .car-details-image {
+            flex: 1;
+            max-width: 500px;
         }
-        .car-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .car-details-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .car-card {
+        .car-details-content {
+            flex: 2;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .car-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-        .car-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .car-card-content {
             padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            text-align: left;
         }
-        .car-card-content h3 {
-            margin-bottom: 5px;
-            font-size: 1.5rem;
+        .car-details-content h1 {
+            font-size: 2rem;
+            margin: 0;
             color: #333;
         }
-        .car-card-content p {
-            margin-bottom: 15px;
+        .car-specs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0;
+            font-size: 1rem;
+        }
+        .car-spec {
+            flex: 1 1 45%;
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
             color: #555;
         }
-        .car-card-content a {
-            display: inline-block;
-            padding: 12px 20px;
+        .car-spec strong {
+            color: #333;
+        }
+
+        /* Booking Button */
+        .booking-button {
             background-color: #464646;
             color: white;
-            border-radius: 5px;
-            font-size: 0.9rem;
+            padding: 10px 30px;
+            margin-left: 250px;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: bold;
-            text-align: center;
             transition: background-color 0.3s ease;
+            display: inline-block;
         }
-        .car-card-content a:hover {
+        .booking-button:hover {
             background-color: #333;
         }
 
@@ -120,8 +119,7 @@
             background-color: #313530;
             color: white;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 22.9px 0;
         }
         footer p {
             margin: 0;
@@ -138,6 +136,7 @@
     </style>
 </head>
 <body>
+
     <!-- Header -->
     <header class="header">
         <a href="/home/">
@@ -152,26 +151,30 @@
         </nav>
     </header>
 
-    <!-- Inventory Section -->
-    <section class="inventory-section">
-        <h1>Browse Our Car Inventory</h1>
-        <div class="car-grid">
-            {% for car in cars %}
-            <div class="car-card">
-                <a href="{% url 'inventory:car_details' car.id %}">
-                    {% if car.image %}
-                        <img src="{{ car.image.url }}" alt="{{ car.brand }} {{ car.model }}">
-                    {% else %}
-                        <img src="{{ settings.CAR_IMAGES_URL }}{{ car.default_image }}" alt="{{ car.brand }} {{ car.model }}">
-                    {% endif %}
-                </a>
-                <div class="car-card-content">
-                    <h3>{{ car.brand }} {{ car.model }}</h3>
-                    <p>{{ car.year }} - {{ car.body_type }}</p>
-                    <a href="{% url 'inventory:car_details' car.id %}">View Details</a>
-                </div>
-            </div>            
-            {% endfor %}
+    <!-- Car Details Section -->
+    <section class="car-details-section">
+        <!-- Car Image -->
+        <div class="car-details-image">
+            {% if car.image %}
+                <img src="{{ car.image.url }}" alt="{{ car.make }} {{ car.model }}">
+            {% else %}
+                <img src="{% static 'images/default_car.jpg' %}" alt="Default Car Image">
+            {% endif %}
+        </div>
+
+        <!-- Car Details Content -->
+        <div class="car-details-content">
+            <h1>{{ car.make }} {{ car.model }} ({{ car.year }}) <a href="{% url 'booking:booking_home' %}?car_id={{ car.id }}&car_make={{ car.make }}&car_model={{ car.model }}&car_price={{ car.rental_price_per_day }}" class="booking-button">Book Now</a></h1> 
+            <div class="car-specs">
+                <div class="car-spec"><strong>Type:</strong> {{ car.body_type }}</div>
+                <div class="car-spec"><strong>Price per Day:</strong> ${{ car.rental_price_per_day }}</div>
+                <div class="car-spec"><strong>Transmission:</strong> {{ car.transmission }}</div>
+                <div class="car-spec"><strong>Fuel Type:</strong> {{ car.fuel_type }}</div>
+                <div class="car-spec"><strong>Color:</strong> {{ car.color }}</div>
+                <div class="car-spec"><strong>Seating Capacity:</strong> {{ car.seating_capacity }}</div>
+                <div class="car-spec"><strong>Availability:</strong> {{ car.availability }}</div>
+                <div class="car-spec"><strong>Condition:</strong> {{ car.condition }}</div>
+            </div>
         </div>
     </section>
 
@@ -184,5 +187,6 @@
             <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
     </footer>
+
 </body>
 </html>
