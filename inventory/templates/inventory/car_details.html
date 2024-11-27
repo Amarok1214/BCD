@@ -51,7 +51,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 50px 20px;
+            padding: 29px 20px;
             max-width: 1200px;
             margin: auto;
             gap: 40px;
@@ -83,6 +83,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            column-gap: 11px;
             margin: 20px 0;
             font-size: 1rem;
         }
@@ -98,20 +99,36 @@
             color: #333;
         }
 
+        .return-button {
+            background-color: #464646;
+            color: white;
+            padding: 10px 20px;
+            margin-left: 150px;
+            margin-top: 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            transition: background-color 0.3s ease;
+            border-style: none;
+        }
+        .return-button:hover {
+            background-color: #D1D6D9;
+            color: #3498db;
+        }
+
         /* Booking Button */
         .booking-button {
             background-color: #464646;
             color: white;
             padding: 10px 30px;
-            margin-left: 250px;
+            margin-left: 200px;
             border-radius: 8px;
             font-size: 1rem;
             font-weight: bold;
             transition: background-color 0.3s ease;
-            display: inline-block;
         }
         .booking-button:hover {
-            background-color: #333;
+            background-color: #D1D6D9;
+            color: #3498db;
         }
 
         /* Footer */
@@ -145,11 +162,14 @@
         <nav>
             <a href="#">Customer Feedback</a>
             <a href="/inventory/">View Rentals</a>
-            <a href="/booking/">Rent Now</a>
-            <a href="/register/">Sign Up</a>
+            <a href="/account/register/">Sign Up</a>
             <a href="/account/login/">Log In</a>
         </nav>
     </header>
+
+    <div class="return-button-container">
+        <button class= "return-button" onclick="history.back()">Return</button>
+    </div>
 
     <!-- Car Details Section -->
     <section class="car-details-section">
