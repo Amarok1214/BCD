@@ -1,0 +1,46 @@
+{% load static %} <!-- Load static files -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Header styles */
+        .header {
+            background-color: #D1D6D9;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header nav a {
+            margin-right: 10px;
+            color: black;
+            text-decoration: none;
+        }
+
+        .ne {
+            margin-right: 10px;
+            color: black;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+<header class="header">
+    <a href="/home/loggedin/">
+        <img src="{% static 'home/logo.png' %}" alt="BCD Logo">
+    </a>
+    <nav>
+        {% if user.is_authenticated %}
+            <div class="ne"><span>Welcome, {{ user.username }}</span></div>
+            <a href="/inventory/">View Rentals</a>
+            <a href="/booking/">Rent Now</a>
+            <a href="{% url 'logout' %}">Log Out</a>
+        {% else %}
+            <a href="/account/login/">Log In</a>
+            <a href="/account/register/">Sign Up</a>
+        {% endif %}
+    </nav>
+</header>
+</body>
+</html>

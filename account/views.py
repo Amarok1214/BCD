@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import RegistrationForm, CustomLoginForm
 from .models import Profile
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.contrib import messages
 
 def register_view(request):
     if request.method == "POST":
@@ -34,7 +37,7 @@ def login_view(request):
                 user = authenticate(request, username=user.username, password=password)  # Authenticate using username
                 if user:
                     login(request, user)
-                    return redirect('/inventory/')  # Redirect to your desired page
+                    return redirect('/home/loggedin/')  # Redirect to your desired page
                 else:
                     messages.error(request, "Invalid email or password. Please try again.")
             except User.DoesNotExist:
@@ -43,3 +46,12 @@ def login_view(request):
         form = CustomLoginForm()
     
     return render(request, 'account/login.html', {'form': form})
+
+
+def logout_view(request):
+    """
+    Ends the user session and redirects to the login page with a message.
+    """
+    logout(request)  # Clear the session
+    messages.success(request, "You have successfully logged out.")
+    return redirect('/account/login/')  # Redirect to login page
