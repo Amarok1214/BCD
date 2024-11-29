@@ -230,10 +230,15 @@
 
     <!-- Hero Section with Booking Form -->
     <section class="hero-section">
-        <h1>Book Your Next Adventure</h1>
-        <p>Choose when to pick up and return your rental</p>
+        <h1>Book Your {{ car_make }} {{ car_model }}</h1>
+        <p>Rental Price Per Day: ${{ car_price }}</p>
         <div class="booking-form">
-            <form id="bookingForm">
+            <form id="bookingForm" method="GET" action="{% url 'booking:reservation_page' %}">
+                <input type="hidden" name="car_id" value="{{ car_id }}">
+                <input type="hidden" name="car_make" value="{{ car_make }}">
+                <input type="hidden" name="car_model" value="{{ car_model }}">
+                <input type="hidden" name="car_price" value="{{ car_price }}">
+            
                 <select name="pickup_branch" id="pickup_branch">
                     <option value="">Select Pick-up Branch</option>
                     <option value="cebuMain">Cebu</option>
@@ -241,7 +246,7 @@
                     <option value="mandaue">Mandaue</option>
                     <option value="lapulapu">Lapu-Lapu</option>
                 </select>
-                <input type="date" id="pickup_date">
+                <input type="date" name="pickup_date" id="pickup_date" required>
                 <br>
                 <select name="return_branch" id="return_branch">
                     <option value="">Select Return Branch</option>
@@ -250,10 +255,10 @@
                     <option value="mandaue">Mandaue</option>
                     <option value="lapulapu">Lapu-Lapu</option>
                 </select>
-                <input type="date" id="return_date">
+                <input type="date" name="return_date" id="return_date" required>
                 <br>
                 <div class="error-message" id="error-message"></div>
-                <button type="submit">Select Car</button>
+                <button type="submit">Book</button>
             </form>
         </div>
     </section>
