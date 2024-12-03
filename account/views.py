@@ -86,3 +86,12 @@ def update_user(request):
         return redirect('landing.html')  # Redirect to the same page after updating
 
     return render(request, 'account/user.html', {'user': request.user})
+
+@login_required
+def account_details(request):
+    # Fetch user and profile details
+    user = request.user
+    context = {
+        'user': user,  # The logged-in user
+    }
+    return render(request, 'account/acc.html', context)
