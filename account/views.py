@@ -7,6 +7,7 @@ from .models import Profile
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def register_view(request):
     if request.method == "POST":
@@ -54,4 +55,34 @@ def logout_view(request):
     """
     logout(request)  # Clear the session
     messages.success(request, "You have successfully logged out.")
-    return redirect('/account/login/')  # Redirect to login page
+    return redirect('/home/homepage/')  # Redirect to login page
+
+@login_required
+def update_user(request):
+    if request.method == "POST":
+        user = request.user
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        password = request.POST.get('password')
+        contact_number = request.POST.get('contact_number')
+
+        # Update the user's information
+        user.first_name = first_name
+        user.last_name = last_name
+
+        # Update password if provided
+        if password:
+            user.set_password(password)
+
+        # Save changes to the User model
+        user.save()
+
+        # Update contact number in the user's profile (assuming a Profile model is linked to the user)
+        if hasattr(user, 'profile'):
+            user.profile.contact_number = contact_number
+            user.profile.save()
+
+        messages.success(request, "Your profile has been updated successfully!")
+        return redirect('landing.html')  # Redirect to the same page after updating
+
+    return render(request, 'account/user.html', {'user': request.user})

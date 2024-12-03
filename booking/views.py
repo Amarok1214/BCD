@@ -5,25 +5,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from datetime import datetime
-from django.contrib.auth.decorators import login_required
 from inventory.models import Car
 from booking.models import Reservation
 
 # Booking home page showing available cars
+@login_required
 def booking_home(request):
     car_id = request.GET.get('car_id')
     car_make = request.GET.get('car_make')
     car_model = request.GET.get('car_model')
     car_price = request.GET.get('car_price')
 
-# Calculate the price of the reservation based on the selected dates
-def calculate_price(price_per_day, start_date, end_date):
-    delta = datetime.strptime(end_date, "%Y-%m-%d") - datetime.strptime(start_date, "%Y-%m-%d")
-    return price_per_day * delta.days
-
-@login_required
-def booking_view(request):
-    return render(request, 'booking/booking.html')
     context = {
         'car_id': car_id,
         'car_make': car_make,
@@ -32,6 +24,7 @@ def booking_view(request):
     }
     return render(request, 'booking/booking.html', context)
 
+@login_required
 def reservation_page(request):
     if request.method == "GET":
         # Get user data
@@ -83,6 +76,7 @@ def reservation_page(request):
     else:
         return redirect('booking:booking_page')
 
+@login_required
 def confirm_reservation_page(request):
     if request.method == "POST":
 
@@ -122,7 +116,8 @@ def confirm_reservation_page(request):
         return render(request, 'booking/confirm_reservation.html', context)
     else:
         return redirect('booking:reservation_page')
-    
+   
+@login_required 
 def user_reservations(request):
     reservations = Reservation.objects.filter(user=request.user).order_by('-pickup_date')
     return render(request, 'booking/user_reservations.html', {'reservations': reservations})

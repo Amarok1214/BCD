@@ -37,6 +37,8 @@
             <a href="/booking/">Rent Now</a>
             <a href="{% url 'logout' %}">Log Out</a>
         {% else %}
+            <a href="/inventory/">View Rentals</a>
+            <a href="/booking/">Rent Now</a>
             <a href="/account/login/">Log In</a>
             <a href="/account/register/">Sign Up</a>
         {% endif %}
