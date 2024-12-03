@@ -74,9 +74,12 @@ def reservation_page(request):
     else:
         return redirect('booking:booking_page')
 
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Reservation, Car
+from django.contrib.sessions.models import Session
+
 def confirm_reservation_page(request):
     if request.method == "POST":
-
         user = request.user
         full_name = f"{user.first_name} {user.last_name}"
         email = user.email
@@ -102,6 +105,10 @@ def confirm_reservation_page(request):
         car.availability = "Rented"
         car.save()
 
+        # Store reservation id in session to access it later
+        request.session['reservation_id'] = reservation.id
+
+        # Context for the confirmation page
         context = {
             "pickup_date": pickup_date,
             "return_date": return_date,
@@ -109,11 +116,18 @@ def confirm_reservation_page(request):
             "email": email,
         }
 
-        # Redirect or render confirmation page
+        # Redirect the user to the payment page
         return render(request, 'booking/confirm_reservation.html', context)
+
     else:
         return redirect('booking:reservation_page')
-    
+
+def confirm_payment_page(request):
+    if request.method == "POST":
+        # Redirect or render confirmation page
+        return render(request, 'payment/payment_form.html')
+   
+
 def user_reservations(request):
     reservations = Reservation.objects.filter(user=request.user).order_by('-pickup_date')
     return render(request, 'booking/user_reservations.html', {'reservations': reservations})

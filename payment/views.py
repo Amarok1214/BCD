@@ -1,35 +1,22 @@
-from django.shortcuts import render
-
-# Create your views here.
-# payment/views.py
 from django.shortcuts import render, redirect
-from django.conf import settings
+from django.urls import reverse
+from .forms import PaymentForm
 
-def payment_form(request):
+def payment_page(request):
     if request.method == 'POST':
-        payment_method = request.POST.get('payment_method')
-        
-        if payment_method == 'gcash':
-            # Redirect to GCash processing
-            return redirect('gcash_payment')
-        elif payment_method == 'paypal':
-            # Redirect to PayPal processing
-            return redirect('paypal_payment')
-        elif payment_method == 'card':
-            # Process credit/debit card payments
-            # Call payment gateway API (like Stripe or any payment processor)
-            return redirect('card_payment')
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Redirect to the payment success page correctly
+            return redirect('payment:payment_success_page')  # Redirect after successful form submission
+    else:
+        form = PaymentForm()
     
-    return render(request, 'payment/payment_form.html')
+    return render(request, 'payment/payment_form.html', {'form': form})  # Ensure template path is correct
 
-def gcash_payment(request):
-    # Handle GCash payment processing here
-    pass
 
-def paypal_payment(request):
-    # Handle PayPal payment processing here
-    pass
+def payment_success_page(request):
+    return render(request, 'payment/payment_success.html')
 
-def card_payment(request):
-    # Handle Credit/Debit Card payment processing here
-    pass
+
+
