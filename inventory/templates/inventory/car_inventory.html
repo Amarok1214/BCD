@@ -53,6 +53,21 @@
             color: #3498db;
         }
 
+        .filter-button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 150px;
+            background-color: #333
+        }
+        .filter-button:hover {
+            background-color: #242424;
+        }
+
         /* Inventory Section */
         .inventory-section {
             padding: 40px 40px;
@@ -86,7 +101,7 @@
         }
         .car-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
         }
         .car-card img {
             width: 100%;
@@ -184,9 +199,17 @@
     <!-- Inventory Section -->
     <section class="inventory-section">
         <h1>Available Cars</h1>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button class="filter-button all" onclick="filterCars('all')">All</button>
+            <button class="filter-button sedan" onclick="filterCars('Sedan')">Sedan</button>
+            <button class="filter-button suv" onclick="filterCars('SUV')">SUV</button>
+            <button class="filter-button hatchback" onclick="filterCars('Hatchback')">Hatchback</button>
+        </div>
+
         <div class="car-grid">
             {% for car in cars %}
-            <div class="car-card">
+            <div class="car-card" data-type="{{ car.body_type }}">
                 <a href="{% url 'inventory:car_details' car.id %}">
                     <div class="car-card-img">
                         <img src="{{ car.image.url }}" alt="{{ car.brand }} {{ car.model }}">
@@ -208,6 +231,19 @@
             {% endfor %}
         </div>
     </section>
+
+    <script>
+        function filterCars(type) {
+            const cars = document.querySelectorAll('.car-card');
+            cars.forEach(car => {
+                if (type === 'all' || car.getAttribute('data-type') === type) {
+                    car.style.display = 'flex'; // Show matching cars
+                } else {
+                    car.style.display = 'none'; // Hide non-matching cars
+                }
+            });
+        }
+    </script>
 
     <!-- Footer -->
     <footer>
