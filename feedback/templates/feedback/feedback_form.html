@@ -1,16 +1,242 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #637383; /* Dark Blue Background */
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url("{% static 'feedback/car-background.png' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Header Styling */
+        .header {
+            background-color: #b4b6b8;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header img {
+            height: 50px;
+        }
+
+        .header nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header nav a,
+        .header nav span {
+            color: #fffefe;
+            font-size: 1rem;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #0059b3;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-btn {
+            background-color: #2b3e50;
+            color: #ffffff;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #545b67;
+            color: #333;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #2c4054;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Form Container */
+        .form-container {
+            background-color: #78797a;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .form-container h1 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            color: #000000;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .form-container input:focus,
+        .form-container textarea:focus {
+            outline: none;
+            box-shadow: 0 0 5px #007bff;
+        }
+
+        .form-container button {
+            background-color: #58626c;
+            color: #ffffff;
+            padding: 15px 30px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .form-container button:hover {
+            background-color: #45576a;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #b4b6b8;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        footer div {
+            margin-top: 10px;
+        }
+
+        footer a {
+            color: #ffffff;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #007bff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 30px;
+            }
+
+            .header nav {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Feedback</title>
 </head>
 <body>
-    <h1>Submit Your Feedback</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- This renders the form fields as paragraphs -->
-        <button type="submit">Submit Feedback</button>
-    </form>
+    <!-- Header -->
+    <header class="header">
+        <a href="/home/loggedin/">
+            <img src="{% static 'feedback/logo.png' %}" alt="BCD Logo">
+        </a>
+        <nav>
+            {% if user.is_authenticated %}
+                <span>Welcome, {{ user.username }}</span>
+                <div class="dropdown">
+                    <button class="dropdown-btn">Menu</button>
+                    <div class="dropdown-content">
+                        <a href="/inventory/">View Rentals</a>
+                        <a href="/booking/">Rent Now</a>
+                        <a href="/account/acc/">Account</a>
+                        <a href="/feedback/">Customer Feedbacks</a>
+                        <a href="{% url 'logout' %}">Log Out</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="/inventory/">View Rentals</a>
+                <a href="/booking/">Rent Now</a>
+                <a href="/account/login/">Log In</a>
+                <a href="/account/register/">Sign Up</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <h1>Submit Your Feedback</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 BCD Car Rental. All rights reserved.</p>
+        <div>
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
 </body>
 </html>

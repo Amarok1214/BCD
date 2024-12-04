@@ -1,20 +1,295 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback List</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url("{% static 'feedback/car-background.png' %}") no-repeat center center fixed;
+            background-size: cover;
+            color: #333333; /* Neutral Dark Gray Text */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Styling */
+        .header {
+        background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .header a img {
+        height: 50px;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)); /* Add shadow to enhance visibility */
+    }
+
+        .header nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header nav a,
+        .header nav span {
+            color: #ffffff;
+            font-size: 1rem;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #181b1e;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-btn {
+            background-color: #0059b3;
+            color: #ffffff;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        body > ul {
+        margin-bottom: 50px; /* Ensure space between content and footer */
+    }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #383838;
+            color: #333;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Main Heading Styling */
+        h1 {
+            font-size: 2.5rem;
+            color: #ffffff; /* White */
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        /* Feedback List Styling */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 700px;
+            width: 90%;
+            background-color: rgba(255, 255, 255, 0.9); /* White with slight transparency */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        li {
+            border-bottom: 1px solid #e6e9ed; /* Light Gray Divider */
+            padding: 15px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        strong {
+            color: #0059b3; /* Deep Blue for Names */
+            font-size: 1.2rem;
+        }
+
+        li span {
+            font-size: 0.9rem;
+            color: #666666; /* Subtle Gray for Email */
+        }
+
+        li p {
+            font-size: 1rem;
+            color: #333333; /* Neutral Text for Comments */
+            margin: 5px 0 0 0;
+        }
+
+        .empty {
+            text-align: center;
+            color: #999999; /* Light Gray */
+            font-size: 1.1rem;
+            padding: 20px;
+        }
+
+        /* Footer Styling */
+        footer {
+        background-color: rgba(0, 0, 0, 0.9); /* Solid dark background */
+        color: #ffffff;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 20px; /* Add space above the footer */
+    }
+
+    footer p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    footer div {
+        margin-top: 10px;
+    }
+
+    footer a {
+        color: #ffffff;
+        margin: 0 10px;
+        font-size: 1.2rem;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+        color: #007bff;
+    }
+     /* Feedback Container */
+     .feedback-container {
+        background-color: #ffffff; /* White background */
+        border: 1px solid #e0e0e0; /* Light gray border */
+        border-radius: 8px;
+        margin-bottom: 15px; /* Spacing between feedbacks */
+        padding: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feedback-container:hover {
+        transform: translateY(-2px); /* Slight lift on hover */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+    }
+
+    /* Individual Feedback Styles */
+    li {
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+    }
+
+    strong {
+        font-size: 1.2rem;
+        color: #1e3a5f; /* Navy blue for name */
+    }
+
+    span {
+        font-size: 0.9rem;
+        color: #666666; /* Subtle gray for email */
+    }
+
+    p {
+        font-size: 1rem;
+        color: #333333; /* Neutral dark gray for comments */
+        margin-top: 10px;
+    }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            ul {
+                padding: 15px;
+            }
+
+            li {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>All Feedback</h1>
+    <header class="header">
+        <a href="/home/loggedin/">
+            <img src="{% static 'feedback/logo.png' %}" alt="BCD Logo">
+        </a>
+        <nav>
+            {% if user.is_authenticated %}
+                <span>Welcome, {{ user.username }}</span>
+                <div class="dropdown">
+                    <button class="dropdown-btn">Menu</button>
+                    <div class="dropdown-content">
+                        <a href="/inventory/">View Rentals</a>
+                        <a href="/booking/">Rent Now</a>
+                        <a href="/account/acc/">Account</a>
+                        <a href="/feedback/">Customer Feedbacks</a>
+                        <a href="{% url 'logout' %}">Log Out</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="/inventory/">View Rentals</a>
+                <a href="/booking/">Rent Now</a>
+                <a href="/account/login/">Log In</a>
+                <a href="/account/register/">Sign Up</a>
+            {% endif %}
+        </nav>
+    </header>
+    <h1>Customer Feedback</h1>
     <ul>
         {% for feedback in feedbacks %}
-            <li>
-                <strong>{{ feedback.name }}</strong> ({{ feedback.email }}): {{ feedback.comment }}
-            </li>
+            <div class="feedback-container">
+                <li>
+                    <strong>{{ feedback.name }}</strong>
+                    <span>({{ feedback.email }})</span>
+                    <p>{{ feedback.comment }}</p>
+                </li>
+            </div>
         {% empty %}
-            <li>No feedback available yet.</li>
+            <li class="empty">No feedback available yet.</li>
         {% endfor %}
     </ul>
+    <footer>
+        <p>&copy; 2024 BCD Car Rental. All rights reserved.</p>
+        <div>
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
 </body>
 </html>
+
