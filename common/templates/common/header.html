@@ -87,7 +87,7 @@
     </a>
     <nav>
         {% if user.is_authenticated %}
-            <div class="ne"><span>Welcome, {{ user.username }}</span></div>
+            <div class="ne"><span>{{ user.username }}</span></div>
             <div class="dropdown">
                 <button class="dropdown-btn">Menu</button>
                 <div class="dropdown-content">

@@ -38,7 +38,13 @@ def login_view(request):
                 user = authenticate(request, username=user.username, password=password)  # Authenticate using username
                 if user:
                     login(request, user)
-                    return redirect('/home/loggedin/')  # Redirect to your desired page
+                    
+                    # Check if the user is a superuser or admin, then redirect to the admin dashboard
+                    if user.is_superuser:
+                        return redirect('/acc_admin/admin/')  # Redirect to admin dashboard
+                    else:
+                        return redirect('/home/loggedin/')  # Redirect to user home page
+                    
                 else:
                     messages.error(request, "Invalid email or password. Please try again.")
             except User.DoesNotExist:
@@ -95,3 +101,4 @@ def account_details(request):
         'user': user,  # The logged-in user
     }
     return render(request, 'account/acc.html', context)
+

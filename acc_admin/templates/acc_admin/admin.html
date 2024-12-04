@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #212121;
+            color: #F5F5F5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #4E342E;
+            padding: 20px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        .container {
+            display: flex;
+            margin: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #333333;
+            padding: 20px;
+        }
+
+        .sidebar a {
+            color: #FFFFFF;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #4E5559;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .sidebar a:hover {
+            background-color: #A1887F;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #212121;
+        }
+
+        .table-container {
+            background-color: #333333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #4E5559;
+        }
+
+        th {
+            background-color: #4E342E;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+
+        td {
+            background-color: #4E5559;
+            color: #F5F5F5;
+        }
+
+        .actions a {
+            text-decoration: none;
+            color: #FFFFFF;
+            padding: 5px 10px;
+            background-color: #A1887F;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        .actions a:hover {
+            background-color: #4E342E;
+        }
+
+        .add-button {
+            text-decoration: none;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            background-color: #A1887F;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .add-button:hover {
+            background-color: #4E342E;
+        }
+    </style>
+    <script>
+        function sortTable(tableId, columnIndex, asc = true) {
+            const table = document.getElementById(tableId);
+            const rows = Array.from(table.querySelectorAll('tbody tr'));
+            rows.sort((a, b) => {
+                const aText = a.children[columnIndex].textContent.trim();
+                const bText = b.children[columnIndex].textContent.trim();
+                return asc ? aText.localeCompare(bText) : bText.localeCompare(aText);
+            });
+            const tbody = table.querySelector('tbody');
+            rows.forEach(row => tbody.appendChild(row));
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Admin Dashboard</h1>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Navigation</h2>
+            <a href="/home/loggedin/">Home</a>
+            <a href="/account/">Account</a>
+            <a href="/admin/">Admin Dashboard</a>
+        </div>
+        <div class="content">
+            <!-- Users Table -->
+            <div class="table-container">
+                <h3>Users</h3>
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable('usersTable', 0, true)">ID ⬆</th>
+                            <th onclick="sortTable('usersTable', 1, true)">Username ⬆</th>
+                            <th onclick="sortTable('usersTable', 2, true)">First Name ⬆</th>
+                            <th onclick="sortTable('usersTable', 3, true)">Last Name ⬆</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.first_name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td class="actions">
+                                <a href="/acc_admin/edit-user/{{ user.id }}/">Edit</a>
+                                <a href="/acc_admin/delete-user/{{ user.id }}/">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="/acc_admin/add-user/" class="add-button">Add New User</a>
+            </div>
+
+            <!-- Cars Table -->
+            <div class="table-container">
+                <h3>Cars</h3>
+                <table id="carsTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable('carsTable', 0, true)">ID ⬆</th>
+                            <th onclick="sortTable('carsTable', 1, true)">Make ⬆</th>
+                            <th onclick="sortTable('carsTable', 2, true)">Model ⬆</th>
+                            <th onclick="sortTable('carsTable', 3, true)">License Plate ⬆</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for car in cars %}
+                        <tr>
+                            <td>{{ car.id }}</td>
+                            <td>{{ car.make }}</td>
+                            <td>{{ car.model }}</td>
+                            <td>{{ car.license_plate }}</td>
+                            <td class="actions">
+                                <a href="/acc_admin/caredit/{{ car.id }}/">Edit</a>
+                                <a href="/acc_admin/cardelete/{{ car.id }}/">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="/acc_admin/caradd/" class="add-button">Add New Car</a>
+            </div>
+
+            <!-- Reservations Table -->
+            <div class="table-container">
+                <h3>Reservations</h3>
+                <table id="reservationsTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable('reservationsTable', 0, true)">ID ⬆</th>
+                            <th onclick="sortTable('reservationsTable', 1, true)">User ⬆</th>
+                            <th onclick="sortTable('reservationsTable', 2, true)">Car ⬆</th>
+                            <th onclick="sortTable('reservationsTable', 3, true)">Pickup Date ⬆</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reservation in reservations %}
+                        <tr>
+                            <td>{{ reservation.id }}</td>
+                            <td>{{ reservation.user.username }}</td>
+                            <td>{{ reservation.car.model }}</td>
+                            <td>{{ reservation.pickup_date }}</td>
+                            <td class="actions">
+                                <a href="/acc_admin/edit-reservation/{{ reservation.id }}/">Edit</a>
+                                <a href="/acc_admin/delete-reservation/{{ reservation.id }}/">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="/acc_admin/add-reservation/" class="add-button">Add New Reservation</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 # account/forms.py
 from django import forms
 from django.contrib.auth.models import User
-
+from .models import Profile  # Import the Profile model
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label="Password")
@@ -22,11 +22,13 @@ class RegistrationForm(forms.ModelForm):
         if commit:
             user.save()
 
-        # Placeholder for saving contact_number if needed in another model/table
         contact_number = self.cleaned_data.get("contact_number")
         if contact_number:
-            # Logic for storing contact_number in a separate model
-            pass
+            # Create a new Profile or update existing profile
+            # You may want to add a check if the Profile already exists and update it, 
+            # but since this form is for new users, we can assume the Profile doesn't exist yet
+            Profile.objects.create(user=user, contact_number=contact_number)
+
 
         return user
 
