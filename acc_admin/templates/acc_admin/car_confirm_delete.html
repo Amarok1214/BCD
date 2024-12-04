@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Delete Car</title>
+    {% load static %}
+</head>
+<body>
+    <h1>Are you sure you want to delete {{ car.make }} {{ car.model }} ({{ car.license_plate }})?</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="/acc_admin/admin/">Cancel</a>
+    </form>
+</body>
+</html>

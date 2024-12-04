@@ -68,6 +68,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-top: 100px;
         }
         .car-card {
             background-color: white;
@@ -173,17 +174,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <a href="/home/">
-            <img src="{% static 'home/logo.png' %}" alt="BCD Logo">
-            </a>
-        <nav>
-            <a href="#">Customer Feedback</a>
-            <a href="/inventory/">View Rentals</a>
-            <a href="/account/register/">Sign Up</a>
-            <a href="/account/login/">Log In</a>
-        </nav>
-    </header>
+    {% include 'common/header.html' %}
 
     <!-- Inventory Section -->
     <section class="inventory-section">

@@ -52,8 +52,14 @@ INSTALLED_APPS = [
     'payment',
     'home',
     'booking',
-    'inventory'
+    'inventory',
+    'feedback',
+    'common'
 ]
+
+# Redirect to login page if user is not authenticated
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'BCD.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'BCD.urls'

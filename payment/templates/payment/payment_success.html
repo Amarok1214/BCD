@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation - BCD Car Rental</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: #D1D6D9;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .header img {
+            height: 80px;
+            margin-right: 500px;
+            vertical-align: middle;
+        }
+        .header nav {
+            display: inline-block;
+            margin-left: 20px;
+        }
+        .header nav a {
+            color: black;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .confirm-section {
+            padding: 40px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .confirm-section h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .confirm-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .confirm-section input, .confirm-section select {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .submit-button {
+            background-color: #464646;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        footer a {
+            color: white;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'common/header.html' %}
+
+
+    <section class="confirmation-section">
+        <h1><center>Payment and Reservation is Confirmed</center></h1>
+        
+    </section>
+
+    <footer>
+        <p>&copy; 2024 BCD Car Rental. All rights reserved.</p>
+        <div>
+            <a href="your-facebook-link"><i class="fa fa-facebook"></i></a>
+            <a href="your-instagram-link"><i class="fa fa-instagram"></i></a>
+            <a href="your-youtube-link"><i class="fa fa-youtube"></i></a>
+        </div>
+    </footer>
+</body>
+</html>

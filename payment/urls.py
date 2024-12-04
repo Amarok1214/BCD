@@ -1,7 +1,9 @@
-# payment/urls.py
 from django.urls import path
-from . import views
+from .views import payment_page, payment_success_page
+
+app_name = 'payment'
 
 urlpatterns = [
-    path('payment-form/', views.payment_form, name='payment_form'),
+    path('payment/', payment_page, name='payment'),
+    path('payment_success/', payment_success_page, name='payment_success_page'),
 ]

@@ -194,24 +194,15 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <a href="/home/">
-        <img src="{% static 'home/logo.png' %}" alt="BCD Logo">
-        </a>
-        <nav>
-            <a href="#">Customer Feedback</a>
-            <a href="/inventory/">View Rentals</a>
-            <a href="/account/register/">Sign Up</a>
-            <a href="/account/login/">Log In</a>
-        </nav>
-    </header>
+    {% include 'common/header.html' %}
+
 
     <!-- Hero Section -->
     <section class="hero-section">
         <h1>BCD <br> Drive with Ease, Explore with Joy</h1>
         <p>Choose a Car That Suits Your Drive!</p>
         <div class="search-bar">
-            <a href="/inventory/">
+            <a href="/account/login/">
             <button>Select Car</button>
             </a>
         </div>
@@ -221,7 +212,7 @@
     <section class="promo-section">
         <h1>BCD DRIVE MORE, SPEND LESS</h1>
         <h2>Save 20% on All Cars!</h2>
-        <a href="/inventory/" class="cta-button">Book Now</a>
+        <a href="/account/login/" class="cta-button">Book Now</a>
     </section>
 
     <!-- Rental Info Section -->

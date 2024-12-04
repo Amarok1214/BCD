@@ -35,13 +35,7 @@
             <img src="{% static 'account/images/2.png' %}" alt="BCD Car Rental Logo">
         </div>
 
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li style="color: green;">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+        
         <form method="POST" action="" style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             {% csrf_token %}
             

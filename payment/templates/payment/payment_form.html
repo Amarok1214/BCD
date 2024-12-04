@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,88 +8,198 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            background-color: #7b7f88;
+            background: url("{% static 'payment/images/loginbg.png' %}") no-repeat center center fixed;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-size: cover;
+            
         }
         .payment-container {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 400px;
+            background-color: #3b424b;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px 25px;
+            width: 380px;
             text-align: center;
         }
         h1 {
-            font-size: 24px;
+            font-size: 26px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #ffffff;
             margin-bottom: 20px;
         }
+        .payment-methods-container {
+            background-color: #4d545e;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid #5e646b;
+            width: 100%;
+            text-align: left;
+        }
         .payment-methods {
-            margin: 20px 0;
+            margin-bottom: 0;
         }
         .payment-methods label {
+            display: inline-block;
             margin-right: 15px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+        .payment-methods label:hover {
+            color: #204e85;
         }
         input[type="radio"] {
-            margin-right: 5px;
+            display: none;
+        }
+        input[type="radio"]:checked + label {
+            color: #4CAF50;
+            font-weight: bold;
         }
         .details {
-            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
         }
         .details input {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            max-width: 300px;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
         }
         .buttons {
             display: flex;
             justify-content: space-between;
+            margin-top: 20px;
         }
         .buttons button {
-            padding: 10px 15px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
         .cancel {
-            background-color: #f44336;
+            background-color: #ff6b6b;
             color: white;
+        }
+        .cancel:hover {
+            background-color: #e53e3e;
         }
         .proceed {
             background-color: #4CAF50;
             color: white;
         }
+        .proceed:hover {
+            background-color: #45a049;
+        }
+        .icon {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+
+        .payment-methods-container {
+            background-color: #4d545e;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid #5e646b;
+            width: auto; /* Prevent stretching to full width */
+            max-width: 320px; /* Limit maximum width */
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto; /* Center the container */
+        }
+        .payment-methods label {
+            display: inline-block;
+            margin: 0 10px; /* Reduce the margin between payment options */
+            cursor: pointer;
+            color: #ffffff;
+        }
+
     </style>
 </head>
 <body>
+    {% csrf_token %}
     <div class="payment-container">
         <h1>Payment</h1>
-        <p>Select Mode of Payment</p>
-        <div class="payment-methods">
-            <input type="radio" name="payment_method" value="gcash" id="gcash">
-            <label for="gcash"><i class="fab fa-cc-visa"></i> GCash</label>
-            <input type="radio" name="payment_method" value="paypal" id="paypal">
-            <label for="paypal"><i class="fab fa-paypal"></i> PayPal</label>
-            <input type="radio" name="payment_method" value="card" id="card">
-            <label for="card"><i class="fab fa-cc-mastercard"></i> Card</label>
+        <p>Select your preferred payment method</p>
+        <div class="payment-methods-container">
+            <div class="payment-methods">
+                <input type="radio" name="payment_method" value="gcash" id="gcash" onclick="toggleFields()">
+                <label for="gcash">
+                    <i class="fab fa-cc-visa icon"></i> GCash
+                </label>
+                <input type="radio" name="payment_method" value="paypal" id="paypal" onclick="toggleFields()">
+                <label for="paypal">
+                    <i class="fab fa-paypal icon"></i> PayPal
+                </label>
+                <input type="radio" name="payment_method" value="card" id="card" onclick="toggleFields()">
+                <label for="card">
+                    <i class="fab fa-cc-mastercard icon"></i> Card
+                </label>
+            </div>
         </div>
-        <div class="details">
-            <input type="text" placeholder="Enter Account Number / Card Number">
-            <input type="text" placeholder="*If chosen method is Card">
-            <input type="text" placeholder="Expiry Date">
-            <input type="text" placeholder="CVC">
-        </div>
-        <div class="buttons">
-            <button class="cancel">Cancel</button>
-            <button class="proceed">Proceed</button>
-        </div>
+        <form method="POST" action="{% url 'payment:payment_success_page' %}">
+            {% csrf_token %}
+            <div class="details">
+                <input type="text" name="account_number" id="account_number" placeholder="Account Number" required>
+                <!-- Card details are hidden by default, will be shown based on payment method -->
+                <div id="card_details" style="display: none;">
+                    <input type="text" name="cardholder_name" id="cardholder_name" placeholder="Cardholder's Name" required>
+                    <input type="text" name="expiry_date" id="expiry_date" placeholder="Expiry Date (MM/YY)" required>
+                    <input type="text" name="cvc" id="cvc" placeholder="CVC" required>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="cancel" type="button">Cancel</button>
+                <button class="proceed" type="submit">Confirm Payment</button>
+            </div>
+        </form>
     </div>
+
+    <script>
+        function toggleFields() {
+            var paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+            var cardDetails = document.getElementById('card_details');
+            var accountNumber = document.getElementById('account_number');
+            var cardholderName = document.getElementById('cardholder_name');
+            var expiryDate = document.getElementById('expiry_date');
+            var cvc = document.getElementById('cvc');
+
+            // Hide/show the card details based on payment method
+            if (paymentMethod === 'card') {
+                cardDetails.style.display = 'block';
+                cardholderName.required = true;
+                expiryDate.required = true;
+                cvc.required = true;
+            } else {
+                cardDetails.style.display = 'none';
+                cardholderName.required = false;
+                expiryDate.required = false;
+                cvc.required = false;
+            }
+
+            // For GCash, only account number is required, hide the card details
+            if (paymentMethod === 'gcash') {
+                accountNumber.required = true;
+            }
+        }
+    </script>
 </body>
 </html>
