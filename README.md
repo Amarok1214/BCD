@@ -14,7 +14,7 @@ A convenient and user-friendly platform to rent cars with ease. BCD Car Rental o
 - [Technologies Used](#technologies-used)
 - [Prerequisite](#prerequisite)
 - [Installation](#installation)
-- [Business Requirements & ERD (Entity-Relationship Diagram)](#business-requirements-&-erd-entity-relationship-diagram)
+- [Business Requirements and ERD](#business-requirements-and-erd)
 - [Gantt Chart](#gantt-chart)
 - [User Interface](#user-interface)
 - [Contributors](#contributors)
@@ -78,9 +78,9 @@ Follow these steps to set up the project locally:
    ```sh
    pip install -r requirements.txt
    ```
-6. Change directory to YapperMail
+6. Change directory to BCD
    ```sh
-   cd YapperMail
+   cd BCD
    ```
 7. Run the server
    ```sh
@@ -90,10 +90,9 @@ Follow these steps to set up the project locally:
    
 ---
 
-## **Business Requirements & ERD(Entity Relationship Diagram)**
+## **Business Requirements and ERD**
 
 [![BR&ERD](https://drive.google.com/uc?export=view&id=1JFWzBPuUzbCLdjJKOSCWsep-U3kaa8Zu)](https://docs.google.com/document/d/1ZQrwfTTLDZfW4NPqRAAWU3ODCyOcgJcZ/edit?usp=sharing&ouid=102880266303764479739&rtpof=true&sd=true)
-
 
 ---
 
@@ -101,7 +100,7 @@ Follow these steps to set up the project locally:
 
 The Gantt Chart outlines the timeline for the project's milestones and deliverables.
 
-(Include a detailed Gantt Chart as an image or link here.)
+[![Gantt Chart](https://drive.google.com/uc?export=view&id=1qrNXIpmN1lzh68arGhznQi-Fn3tIMjYHbfhoSnXy6qA)](https://docs.google.com/spreadsheets/d/1qrNXIpmN1lzh68arGhznQi-Fn3tIMjYHbfhoSnXy6qA/edit?usp=sharing)
 
 ---
 
