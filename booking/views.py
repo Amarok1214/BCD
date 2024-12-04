@@ -9,6 +9,7 @@ from inventory.models import Car
 from booking.models import Reservation
 
 # Booking home page showing available cars
+@login_required
 def booking_home(request):
     car_id = request.GET.get('car_id')
     car_make = request.GET.get('car_make')
@@ -23,6 +24,7 @@ def booking_home(request):
     }
     return render(request, 'booking/booking.html', context)
 
+@login_required
 def reservation_page(request):
     if request.method == "GET":
         # Get user data

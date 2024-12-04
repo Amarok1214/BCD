@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>BCD Car Rental - Update Profile</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url("{% static 'account/images/registerbg.png' %}") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .logo img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            padding: 40px;
+            border-radius: 10px;
+            width: 800px;
+            max-width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+            margin-left: 500px;
+        }
+
+        form {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .button-container {
+            grid-column: 1 / 3;
+            text-align: center;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            width: 40%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .update-button {
+            background-color: #4E5559;
+            color: white;
+        }
+
+        .cancel-button {
+            background-color: #4E5559;
+            color: rgb(255, 255, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="logo">
+            <img src="{% static 'account/images/2.png' %}" alt="BCD Car Rental Logo">
+        </div>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            
+            <!-- First Name -->
+            <div style="grid-column: 1 / 2;">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" id="first_name" value="{{ user.first_name }}" required>
+            </div>
+
+            <!-- Last Name -->
+            <div style="grid-column: 2 / 3;">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}" required>
+            </div>
+
+            <!-- Password -->
+            <div style="grid-column: 1 / 2;">
+                <label for="password">New Password</label>
+                <input type="password" name="password" id="password">
+            </div>
+
+            <!-- Contact Number -->
+            <div style="grid-column: 2 / 3;">
+                <label for="contact_number">Contact Number</label>
+                <input type="text" name="contact_number" id="contact_number" value="{{ user.profile.contact_number }}">
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-container">
+                <button type="submit" class="update-button">Update Profile</button>
+                <button type="button" class="cancel-button" onclick="goBack()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back(); // Navigate to the previous page
+        }
+    </script>
+</body>
+</html>

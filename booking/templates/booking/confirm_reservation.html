@@ -75,18 +75,8 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <a href="/home/">
-        <img src="{% static 'home/logo.png' %}" alt="BCD Logo">
-        </a>
-        <nav>
-            <a href="#">Customer Feedback</a>
-            <a href="/inventory/">View Rentals</a>
-            <a href="/booking/">Rent Now</a>
-            <a href="/register/">Sign Up</a>
-            <a href="/account/login/">Log In</a>
-        </nav>
-    </header>
+    {% include 'common/header.html' %}
+
 
     <section class="confirmation-section">
         <h1>Reservation confirmed for {{ full_name }}! Please Confirm Payment.</h1>

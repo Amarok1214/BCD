@@ -216,18 +216,8 @@
 
 <body>
     <!-- Header -->
-    <header class="header">
-        <a href="/home/">
-        <img src="{% static 'home/logo.png' %}" alt="BCD Logo">
-        </a>
-        <nav>
-            <a href="#">Customer Feedback</a>
-            <a href="/inventory/">View Rentals</a>
-            <a href="/booking/">Rent Now</a>
-            <a href="/register/">Sign Up</a>
-            <a href="/account/login/">Log In</a>
-        </nav>
-    </header>
+    {% include 'common/header.html' %}
+
 
     <!-- Hero Section with Booking Form -->
     <section class="hero-section">
