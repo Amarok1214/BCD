@@ -14,6 +14,7 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
+            background: url("{% static 'feedback/car-background.png' %}") no-repeat center center fixed;
         }
         a {
             text-decoration: none;
@@ -54,9 +55,13 @@
 
         /* Inventory Section */
         .inventory-section {
-            padding: 60px 20px;
+            padding: 40px 40px;
             max-width: 1200px;
             margin: 0 auto;
+            margin-top: 50px;
+            background-color: #D1D6D9;
+            padding: 40px;
+            border-radius: 10px;
         }
         .inventory-section h1 {
             text-align: center;
@@ -178,7 +183,7 @@
 
     <!-- Inventory Section -->
     <section class="inventory-section">
-        <h1>Browse Our Car Inventory</h1>
+        <h1>Available Cars</h1>
         <div class="car-grid">
             {% for car in cars %}
             <div class="car-card">
