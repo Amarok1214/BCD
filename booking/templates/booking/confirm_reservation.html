@@ -34,6 +34,7 @@
             text-decoration: none;
         }
         .confirm-section {
+
             padding: 40px;
             max-width: 600px;
             margin: auto;
@@ -72,6 +73,43 @@
             color: white;
             margin: 0 10px;
         }
+        a {
+    text-decoration: none; /* Remove underline */
+}
+
+        a button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s;
+            width: 100%;
+            max-width: 300px;  /* Match the width of inputs */
+            margin-top: 10px;
+        }
+
+        /* Button specific styles */
+        a button:hover {
+            background-color: #45a049; /* Similar hover effect as Confirm Payment */
+        }
+
+        a button:focus {
+            outline: none;
+        }
+
+        a button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        a button:hover {
+            background-color: #45a049;
+        }
+
     </style>
 </head>
 <body>
@@ -79,10 +117,13 @@
 
 
     <section class="confirmation-section">
+        <center>
+            </center>
         <h1>Reservation confirmed for {{ full_name }}! Please Confirm Payment.</h1>
         <a href="{% url 'payment:payment' %}">
             <button>Confirm Payment</button>
         </a>
+        
     </section>
 
     <footer>

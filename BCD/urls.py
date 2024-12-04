@@ -28,7 +28,9 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('booking/', include('booking.urls')),
     path('inventory/', include('inventory.urls')),
-    path('acc_admin/', include('acc_admin.urls')),
+    path('feedback/', include('feedback.urls')),
+
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

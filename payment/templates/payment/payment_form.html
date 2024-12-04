@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,15 +9,19 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f0f2f5;
+            background-color: #7b7f88;
+            background: url("{% static 'payment/images/loginbg.png' %}") no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            
+            
         }
         .payment-container {
-            background-color: #ffffff;
+            background-color: #3b424b;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: 30px 25px;
@@ -25,24 +30,33 @@
         }
         h1 {
             font-size: 26px;
-            color: #333333;
+            color: #ffffff;
             margin-bottom: 10px;
         }
         p {
-            color: #666666;
+            color: #ffffff;
             margin-bottom: 20px;
         }
-        .payment-methods {
+        .payment-methods-container {
+            background-color: #4d545e;
+            padding: 15px;
+            border-radius: 8px;
             margin-bottom: 25px;
+            border: 1px solid #5e646b;
+            width: 100%;
+            text-align: left;
+        }
+        .payment-methods {
+            margin-bottom: 0;
         }
         .payment-methods label {
             display: inline-block;
             margin-right: 15px;
             cursor: pointer;
-            color: #555555;
+            color: #ffffff;
         }
         .payment-methods label:hover {
-            color: #000000;
+            color: #204e85;
         }
         input[type="radio"] {
             display: none;
@@ -51,8 +65,16 @@
             color: #4CAF50;
             font-weight: bold;
         }
+        .details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
         .details input {
             width: 100%;
+            max-width: 300px;
             padding: 12px;
             margin-bottom: 12px;
             border: 1px solid #ddd;
@@ -91,6 +113,26 @@
             font-size: 24px;
             margin-right: 5px;
         }
+
+        .payment-methods-container {
+            background-color: #4d545e;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid #5e646b;
+            width: auto; /* Prevent stretching to full width */
+            max-width: 320px; /* Limit maximum width */
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto; /* Center the container */
+        }
+        .payment-methods label {
+            display: inline-block;
+            margin: 0 10px; /* Reduce the margin between payment options */
+            cursor: pointer;
+            color: #ffffff;
+        }
+
     </style>
 </head>
 <body>
@@ -98,19 +140,21 @@
     <div class="payment-container">
         <h1>Payment</h1>
         <p>Select your preferred payment method</p>
-        <div class="payment-methods">
-            <input type="radio" name="payment_method" value="gcash" id="gcash" onclick="toggleFields()">
-            <label for="gcash">
-                <i class="fab fa-cc-visa icon"></i> GCash
-            </label>
-            <input type="radio" name="payment_method" value="paypal" id="paypal" onclick="toggleFields()">
-            <label for="paypal">
-                <i class="fab fa-paypal icon"></i> PayPal
-            </label>
-            <input type="radio" name="payment_method" value="card" id="card" onclick="toggleFields()">
-            <label for="card">
-                <i class="fab fa-cc-mastercard icon"></i> Card
-            </label>
+        <div class="payment-methods-container">
+            <div class="payment-methods">
+                <input type="radio" name="payment_method" value="gcash" id="gcash" onclick="toggleFields()">
+                <label for="gcash">
+                    <i class="fab fa-cc-visa icon"></i> GCash
+                </label>
+                <input type="radio" name="payment_method" value="paypal" id="paypal" onclick="toggleFields()">
+                <label for="paypal">
+                    <i class="fab fa-paypal icon"></i> PayPal
+                </label>
+                <input type="radio" name="payment_method" value="card" id="card" onclick="toggleFields()">
+                <label for="card">
+                    <i class="fab fa-cc-mastercard icon"></i> Card
+                </label>
+            </div>
         </div>
         <form method="POST" action="{% url 'payment:payment_success_page' %}">
             {% csrf_token %}

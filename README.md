@@ -30,10 +30,14 @@ BCD Car Rental is designed to provide a hassle-free car rental process. Users ca
 ## **Functional Requirements**
 
 1. **User Registration & Login**: Allow users to create accounts and log in securely.
-2. **Car Browsing & Searching**: Enable users to browse or search for cars based on categories, price, and availability.
-3. **Booking System**: Users can reserve cars for specific dates and times.
-4. **Payment Integration**: Provide online payment options for a seamless checkout process.
-5. **Admin Dashboard**: Manage car inventory, bookings, and customer data.
+   
+3. **Car Browsing**: Enable users to browse for cars based on categories, price, and availability.
+   
+5. **Booking System**: Users can reserve cars for specific dates and branches.
+   
+7. **Payment Integration**: Provide online payment options for a seamless checkout process.
+   
+9. **Admin Dashboard**: Manage car inventory, bookings, and customer data.
 
 ---
 
