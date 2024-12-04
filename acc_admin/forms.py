@@ -1,5 +1,6 @@
 from django import forms
 from inventory.models import Car, Branch
+from booking.models import Reservation
 
 class CarForm(forms.ModelForm):
     class Meta:
@@ -18,3 +19,15 @@ class CarForm(forms.ModelForm):
             'availability': forms.Select(choices=Car.AVAILABILITY_CHOICES),
             'condition': forms.Select(choices=Car.CONDITION_CHOICES),
         }
+        
+
+class ReservationForm(forms.ModelForm):
+    class Meta:
+        model = Reservation
+        fields = ['user', 'car', 'pickup_date', 'return_date', 'booking_status']
+        widgets = {
+            'pickup_date': forms.DateInput(attrs={'type': 'date'}),
+            'return_date': forms.DateInput(attrs={'type': 'date'}),
+            'booking_status': forms.Select(),
+        }
+

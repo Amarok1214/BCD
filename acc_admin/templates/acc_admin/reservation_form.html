@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #212121; /* Dark Gray */
+            color: #F5F5F5; /* Very Light Gray */
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: #333333; /* Charcoal */
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #F5F5F5; /* Very Light Gray */
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #A1887F; /* Medium Brown */
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #4E5559; /* Slightly lighter gray */
+            border-radius: 5px;
+            background-color: #4E5559; /* Slightly lighter gray for input fields */
+            color: #FFFFFF; /* White text */
+            font-size: 14px;
+            box-sizing: border-box; /* Ensures padding doesn't cause overflow */
+        }
+
+        input[type="file"] {
+            padding: 10px; /* Adjusting padding for file input to match other fields */
+            background-color: #333333; /* Keep file input consistent */
+        }
+
+        button {
+            background-color: #A1887F; /* Medium Brown */
+            color: #FFFFFF; /* White text */
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 14px;
+            box-sizing: border-box; /* Ensures button width matches form fields */
+        }
+
+        button:hover {
+            background-color: #4E342E; /* Dark Brown on hover */
+        }
+
+        /* Ensure links are styled similarly to buttons */
+        a {
+            text-decoration: none;
+            background-color: #757575; /* Charcoal for cancel */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+            width: 100%; /* Make the cancel button match the input fields' width */
+            text-align: center;
+        }
+
+        a:hover {
+            background-color: #616161; /* Darker charcoal on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>{{ title }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>

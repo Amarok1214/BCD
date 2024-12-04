@@ -142,8 +142,9 @@
                         <tr>
                             <th onclick="sortTable('usersTable', 0, true)">ID ⬆</th>
                             <th onclick="sortTable('usersTable', 1, true)">Username ⬆</th>
-                            <th onclick="sortTable('usersTable', 2, true)">First Name ⬆</th>
-                            <th onclick="sortTable('usersTable', 3, true)">Last Name ⬆</th>
+                            <th onclick="sortTable('usersTable', 2, true)">Username ⬆</th>
+                            <th onclick="sortTable('usersTable', 3, true)">First Name ⬆</th>
+                            <th onclick="sortTable('usersTable', 4, true)">Last Name ⬆</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -152,6 +153,7 @@
                         <tr>
                             <td>{{ user.id }}</td>
                             <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
                             <td>{{ user.first_name }}</td>
                             <td>{{ user.last_name }}</td>
                             <td class="actions">
@@ -202,10 +204,12 @@
                 <table id="reservationsTable">
                     <thead>
                         <tr>
-                            <th onclick="sortTable('reservationsTable', 0, true)">ID ⬆</th>
-                            <th onclick="sortTable('reservationsTable', 1, true)">User ⬆</th>
-                            <th onclick="sortTable('reservationsTable', 2, true)">Car ⬆</th>
-                            <th onclick="sortTable('reservationsTable', 3, true)">Pickup Date ⬆</th>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Car</th>
+                            <th>Pickup Date</th>
+                            <th>Return Date</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -216,15 +220,18 @@
                             <td>{{ reservation.user.username }}</td>
                             <td>{{ reservation.car.model }}</td>
                             <td>{{ reservation.pickup_date }}</td>
+                            <td>{{ reservation.return_date }}</td>
+                            <td>{{ reservation.booking_status }}</td>
                             <td class="actions">
-                                <a href="/acc_admin/edit-reservation/{{ reservation.id }}/">Edit</a>
-                                <a href="/acc_admin/delete-reservation/{{ reservation.id }}/">Delete</a>
+                                <a href="{% url 'edit_reservation' reservation.id %}">Edit</a>
+                                <a href="{% url 'delete_reservation' reservation.id %}">Delete</a>
                             </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-                <a href="/acc_admin/add-reservation/" class="add-button">Add New Reservation</a>
+                <a href="{% url 'add_reservation' %}" class="add-button">Add New Reservation</a>
+                
             </div>
         </div>
     </div>

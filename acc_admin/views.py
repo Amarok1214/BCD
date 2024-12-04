@@ -8,7 +8,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from inventory.models import Car, Branch
-from acc_admin.forms import CarForm
+from acc_admin.forms import CarForm, ReservationForm
 
 # Restrict access to superusers for all views below
 
@@ -137,3 +137,38 @@ def delete_car(request, car_id):
         messages.success(request, "Car deleted successfully!")
         return redirect('amdmin')
     return render(request, 'acc_admin/car_confirm_delete.html', {'car': car})
+
+
+# Add a new reservation
+def add_reservation(request):
+    if request.method == 'POST':
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Reservation added successfully!")
+            return redirect('amdmin')
+    else:
+        form = ReservationForm()
+    return render(request, 'acc_admin/reservation_form.html', {'form': form, 'title': 'Add Reservation'})
+
+# Edit an existing reservation
+def edit_reservation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+    if request.method == 'POST':
+        form = ReservationForm(request.POST, instance=reservation)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Reservation updated successfully!")
+            return redirect('amdmin')
+    else:
+        form = ReservationForm(instance=reservation)
+    return render(request, 'acc_admin/reservation_form.html', {'form': form, 'title': 'Edit Reservation'})
+
+# Delete a reservation
+def delete_reservation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+    if request.method == 'POST':
+        reservation.delete()
+        messages.success(request, "Reservation deleted successfully!")
+        return redirect('amdmin')
+    return render(request, 'acc_admin/reservation_confirm_delete.html', {'reservation': reservation})

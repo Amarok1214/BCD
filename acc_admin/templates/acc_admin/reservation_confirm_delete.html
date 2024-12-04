@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #212121;
+            color: #F5F5F5;
+            padding: 20px;
+        }
+        .delete-container {
+            background-color: #333333;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        button {
+            background-color: #A1887F;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #4E342E;
+        }
+        .danger {
+            background-color: #B71C1C;
+        }
+        .danger:hover {
+            background-color: #7B1C1C;
+        }
+    </style>
+</head>
+<body>
+    <div class="delete-container">
+        <h1>Are you sure you want to delete this reservation?</h1>
+        <p><strong>User:</strong> {{ reservation.user.username }}</p>
+        <p><strong>Car:</strong> {{ reservation.car.model }}</p>
+        <p><strong>Pickup Date:</strong> {{ reservation.pickup_date }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="danger">Delete</button>
+            <a href="{% url 'amdmin' %}"><button type="button">Cancel</button></a>
+        </form>
+    </div>
+</body>
+</html>
