@@ -190,12 +190,108 @@
         footer a:hover {
             color: #3498db;
         }
+        .header {
+            background-color: #D1D6D9;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header nav {
+            position: relative;
+        }
+
+        .header nav a {
+            margin-right: 10px;
+            color: black;
+            text-decoration: none;
+        }
+
+        .ne {
+            margin-right: 10px;
+            color: black;
+            text-decoration: none;
+            background-color: #D1D6D9;
+            border: none;
+            color: black;
+            font-size: 16px;
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background-color: #D1D6D9;
+            border: none;
+            color: black;
+            font-size: 16px;
+            padding: 10px 15px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .dropdown-btn:hover {
+            background-color: #B0B6BA;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 150px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            text-align: left;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
-    {% include 'common/header.html' %}
-
+    <header class="header">
+        <a href="/home/loggedin/">
+            <img src="{% static 'home/logo.png' %}" alt="BCD Logo">
+        </a>
+        <nav>
+            {% if user.is_authenticated %}
+                <div class="ne"><span>Welcome, {{ user.username }}</span></div>
+                <div class="dropdown">
+                    <button class="dropdown-btn">Menu</button>
+                    <div class="dropdown-content">
+                        <a href="/inventory/">View Rentals</a>
+                        <a href="/booking/">Rent Now</a>
+                        <a href="/account/acc/">Account</a>
+                        <a href="{% url 'logout' %}">Log Out</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="/inventory/">View Rentals</a>
+                <a href="/booking/">Rent Now</a>
+                <a href="/account/login/">Log In</a>
+                <a href="/account/register/">Sign Up</a>
+            {% endif %}
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero-section">

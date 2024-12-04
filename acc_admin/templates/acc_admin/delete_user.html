@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete User</title>
+    <style>
+        /* Similar styles to add/edit templates */
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Delete User</h2>
+        <p>Are you sure you want to delete user <strong>{{ user.username }}</strong>?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit">Yes, Delete</button>
+            <a href="/acc_admin/admin/">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
