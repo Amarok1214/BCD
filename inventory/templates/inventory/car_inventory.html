@@ -32,6 +32,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         .header img {
             height: 60px;
@@ -84,6 +87,20 @@
             height: 200px;
             object-fit: cover;
         }
+
+        .features {
+            display: flex;
+            gap: 10px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 1.2rem;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
         .car-card-content {
             padding: 20px;
             flex-grow: 1;
@@ -135,6 +152,23 @@
         footer a:hover {
             color: #3498db;
         }
+
+        .car-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -158,18 +192,23 @@
             {% for car in cars %}
             <div class="car-card">
                 <a href="{% url 'inventory:car_details' car.id %}">
-                    {% if car.image %}
+                    <div class="car-card-img">
                         <img src="{{ car.image.url }}" alt="{{ car.brand }} {{ car.model }}">
-                    {% else %}
-                        <img src="{{ settings.CAR_IMAGES_URL }}{{ car.default_image }}" alt="{{ car.brand }} {{ car.model }}">
-                    {% endif %}
+                    </div>
                 </a>
                 <div class="car-card-content">
                     <h3>{{ car.brand }} {{ car.model }}</h3>
                     <p>{{ car.year }} - {{ car.body_type }}</p>
+                    <p class="price">P{{ car.rental_price_per_day }}/day</p>
+                    <div class="features">
+                        <i class="fas fa-gas-pump"></i> {{ car.fuel_type }}
+                        <i class="fas fa-users"></i> {{ car.seating_capacity }} seats
+                    </div>
                     <a href="{% url 'inventory:car_details' car.id %}">View Details</a>
+                    <br>
+                    <a href="{% url 'booking:booking_home' %}?car_id={{ car.id }}&car_make={{ car.make }}&car_model={{ car.model }}&car_price={{ car.rental_price_per_day }}" class="booking-button">Book Now</a>
                 </div>
-            </div>            
+            </div>           
             {% endfor %}
         </div>
     </section>
