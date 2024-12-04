@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'booking',
     'inventory',
     'feedback',
+    'acc_admin',
     'common'
 ]
 
