@@ -104,8 +104,6 @@ def confirm_reservation_page(request):
         )
 
         # Update the car's availability status
-        car.availability = "Rented"
-        car.save()
 
         # Store reservation id in session to access it later
         request.session['reservation_id'] = reservation.id

@@ -14,6 +14,7 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
+            background: url("{% static 'feedback/car-background.png' %}") no-repeat center center fixed;
         }
         a {
             text-decoration: none;
@@ -32,6 +33,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         .header img {
             height: 60px;
@@ -49,11 +53,30 @@
             color: #3498db;
         }
 
+        .filter-button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 150px;
+            background-color: #333
+        }
+        .filter-button:hover {
+            background-color: #242424;
+        }
+
         /* Inventory Section */
         .inventory-section {
-            padding: 60px 20px;
+            padding: 40px 40px;
             max-width: 1200px;
             margin: 0 auto;
+            margin-top: 50px;
+            background-color: #D1D6D9;
+            padding: 40px;
+            border-radius: 10px;
         }
         .inventory-section h1 {
             text-align: center;
@@ -78,13 +101,27 @@
         }
         .car-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
         }
         .car-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
+
+        .features {
+            display: flex;
+            gap: 10px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 1.2rem;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
         .car-card-content {
             padding: 20px;
             flex-grow: 1;
@@ -136,6 +173,23 @@
         footer a:hover {
             color: #3498db;
         }
+
+        .car-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -144,26 +198,52 @@
 
     <!-- Inventory Section -->
     <section class="inventory-section">
-        <h1>Browse Our Car Inventory</h1>
+        <h1>Available Cars</h1>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button class="filter-button all" onclick="filterCars('all')">All</button>
+            <button class="filter-button sedan" onclick="filterCars('Sedan')">Sedan</button>
+            <button class="filter-button suv" onclick="filterCars('SUV')">SUV</button>
+            <button class="filter-button hatchback" onclick="filterCars('Hatchback')">Hatchback</button>
+        </div>
+
         <div class="car-grid">
             {% for car in cars %}
-            <div class="car-card">
+            <div class="car-card" data-type="{{ car.body_type }}">
                 <a href="{% url 'inventory:car_details' car.id %}">
-                    {% if car.image %}
+                    <div class="car-card-img">
                         <img src="{{ car.image.url }}" alt="{{ car.brand }} {{ car.model }}">
-                    {% else %}
-                        <img src="{{ settings.CAR_IMAGES_URL }}{{ car.default_image }}" alt="{{ car.brand }} {{ car.model }}">
-                    {% endif %}
+                    </div>
                 </a>
                 <div class="car-card-content">
                     <h3>{{ car.brand }} {{ car.model }}</h3>
                     <p>{{ car.year }} - {{ car.body_type }}</p>
+                    <p class="price">P{{ car.rental_price_per_day }}/day</p>
+                    <div class="features">
+                        <i class="fas fa-gas-pump"></i> {{ car.fuel_type }}
+                        <i class="fas fa-users"></i> {{ car.seating_capacity }} seats
+                    </div>
                     <a href="{% url 'inventory:car_details' car.id %}">View Details</a>
+                    <br>
+                    <a href="{% url 'booking:booking_home' %}?car_id={{ car.id }}&car_make={{ car.make }}&car_model={{ car.model }}&car_price={{ car.rental_price_per_day }}" class="booking-button">Book Now</a>
                 </div>
-            </div>            
+            </div>           
             {% endfor %}
         </div>
     </section>
+
+    <script>
+        function filterCars(type) {
+            const cars = document.querySelectorAll('.car-card');
+            cars.forEach(car => {
+                if (type === 'all' || car.getAttribute('data-type') === type) {
+                    car.style.display = 'flex'; // Show matching cars
+                } else {
+                    car.style.display = 'none'; // Hide non-matching cars
+                }
+            });
+        }
+    </script>
 
     <!-- Footer -->
     <footer>
